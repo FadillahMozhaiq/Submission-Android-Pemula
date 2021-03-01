@@ -1,0 +1,7 @@
+<resources>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="padding_30">30dp</dimen>
+    <dimen name="size_18">18dp</dimen>
+    <dimen name="font_14">14sp</dimen>
+    <dimen name="padding_20">20dp</dimen>
+</resources>
