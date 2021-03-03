@@ -12,7 +12,7 @@ object ImageHelper {
     fun getImage(
         imageView: ImageView,
         url: String,
-        placeholder: Int = R.drawable.ic_no_images,
+        placeholder: Int = R.drawable.placeholder,
         error: Int = R.drawable.ic_no_images
     ) {
         Picasso.get()
