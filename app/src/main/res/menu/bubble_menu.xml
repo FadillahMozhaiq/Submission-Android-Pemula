@@ -10,7 +10,7 @@
         android:id="@+id/favorite_menu"
         android:title="@string/favorite"
         android:iconTint="@color/white"
-        android:icon="@drawable/ic_baseline_favorite_24" />
+        android:icon="@drawable/ic_baseline_favorite_24"/>
     <item
         android:id="@+id/about_menu"
         android:title="@string/about"

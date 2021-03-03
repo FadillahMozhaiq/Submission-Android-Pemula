@@ -1,4 +1,4 @@
-package id.fadillah.pemulasubmission.ui.activity
+package id.fadillah.pemulasubmission.ui.activity.detail
 
 import android.os.Bundle
 import com.google.android.material.floatingactionbutton.FloatingActionButton

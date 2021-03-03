@@ -1,14 +1,135 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragment.AboutFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.fragment.about.AboutFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="About " />
+        android:layout_height="wrap_content" >
 
-</FrameLayout>
+        <ImageView
+            android:id="@+id/iv_poster"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:src="@drawable/poster_android"
+            android:scaleType="centerCrop"
+            tools:ignore="ContentDescription"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_220"
+            android:background="@drawable/white_gradient"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_start"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintGuide_begin="@dimen/size_16" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="150dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="160dp"
+            android:layout_marginStart="@dimen/size_16"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:cardElevation="12dp"
+            app:cardCornerRadius="8dp">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/margin_5"
+                android:src="@drawable/profile_photo"
+                android:scaleType="centerCrop"
+                tools:ignore="ContentDescription"/>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_name_start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="185dp" />
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/name"
+            android:layout_marginEnd="8dp"
+            android:textSize="20sp"
+            android:fontFamily="@font/extrabold"
+            android:textColor="@color/black"
+            android:layout_marginTop="@dimen/size_16"
+            android:singleLine="false"
+            app:layout_constraintTop_toBottomOf="@+id/iv_poster"
+            app:layout_constraintStart_toStartOf="@id/guideline_name_start" />
+
+        <TextView
+            android:id="@+id/tv_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_5"
+            android:fontFamily="@font/regular"
+            android:textColor="?android:attr/textColorPrimary"
+            android:text="@string/my_email"
+            android:textSize="@dimen/font_14"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline_name_start"
+            app:layout_constraintTop_toBottomOf="@+id/tv_name" />
+
+        <ImageButton
+            android:id="@+id/btn_add_friend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_10"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/ic_baseline_person_add"
+            android:background="@android:color/transparent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_email"
+            app:layout_constraintEnd_toEndOf="@id/tv_email"/>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_about"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="387dp" />
+
+        <TextView
+            android:id="@+id/tv_story"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/story"
+            android:fontFamily="@font/bold"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@id/guideline_start"
+            app:layout_constraintTop_toTopOf="@id/guideline_about"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:paddingStart="@dimen/size_16"
+            android:paddingEnd="@dimen/size_16"
+            android:gravity="start"
+            android:textColor="?android:attr/textColorPrimary"
+            android:fontFamily="@font/regular"
+            android:text="@string/dummy_long_text"
+            app:layout_constraintTop_toBottomOf="@id/tv_story"
+            app:layout_constraintStart_toEndOf="@id/guideline_start"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

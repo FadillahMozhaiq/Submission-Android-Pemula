@@ -1,4 +1,4 @@
-package id.fadillah.pemulasubmission.ui.fragment
+package id.fadillah.pemulasubmission.ui.fragment.about
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -33,7 +33,7 @@ class AboutFragment : Fragment() {
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
+        fun newInstance() =
             AboutFragment()
     }
 }

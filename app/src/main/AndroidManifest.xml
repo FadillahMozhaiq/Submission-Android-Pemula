@@ -11,11 +11,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PemulaSubmission">
         <activity
-            android:name=".ui.activity.DetailActivity"
+            android:name=".ui.activity.detail.DetailActivity"
             android:label="@string/title_activity_detail"
             android:theme="@style/Theme.PemulaSubmission.NoActionBar" />
         <activity
-            android:name=".ui.activity.SplashActivity"
+            android:name=".ui.activity.splash.SplashActivity"
             android:theme="@style/Theme.PemulaSubmission.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,7 +24,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.activity.MainActivity"
+            android:name=".ui.activity.main.MainActivity"
             android:theme="@style/Theme.PemulaSubmission.NoActionBar">
         </activity>
     </application>

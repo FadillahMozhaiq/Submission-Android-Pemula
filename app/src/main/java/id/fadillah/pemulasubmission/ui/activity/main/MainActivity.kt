@@ -1,4 +1,4 @@
-package id.fadillah.pemulasubmission.ui.activity
+package id.fadillah.pemulasubmission.ui.activity.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,7 +7,6 @@ import com.fxn.OnBubbleClickListener
 import id.fadillah.pemulasubmission.R
 import id.fadillah.pemulasubmission.databinding.ActivityMainBinding
 import id.fadillah.pemulasubmission.ui.adapter.SectionsPagerAdapter
-import id.fadillah.pemulasubmission.utils.ImageHelper
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -18,11 +17,11 @@ class MainActivity : AppCompatActivity() {
         pageradapter = SectionsPagerAdapter(this)
         setContentView(binding.root)
 
-        ImageHelper.getImage(
-            binding.ivBackground,
-            "https://i.pinimg.com/originals/0b/44/77/0b4477823d40da7c271d1afae34203e9.jpg",
-            error = R.drawable.background
-        )
+//        ImageHelper.getImage(
+//            binding.ivBackground,
+//            "https://i.pinimg.com/originals/0b/44/77/0b4477823d40da7c271d1afae34203e9.jpg",
+//            error = R.drawable.background
+//        )
 
         binding.vpMain.apply {
             adapter = pageradapter
@@ -42,7 +41,5 @@ class MainActivity : AppCompatActivity() {
                 binding.tabs.setSelected(position)
             }
         })
-
-
     }
 }

@@ -4,55 +4,57 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activity.SplashActivity">
-    <FrameLayout
+    tools:context=".ui.activity.splash.SplashActivity">
+
+    <ImageView
+        android:id="@+id/img_splash"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/bg_naruto"
+        tools:ignore="contentDescription" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="120dp"
+        android:background="@drawable/white_gradient" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        tools:ignore="ContentDescription" />
 
-        <ImageView
-            android:id="@+id/img_splash"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            android:src="@drawable/background"
-            tools:ignore="contentDescription" />
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/android_pemula"
+        android:textStyle="bold"
+        android:textSize="24sp"
+        android:textColor="@color/grey"
+        android:fontFamily="@font/regular"
+        android:layout_marginEnd="14dp"
+        android:layout_marginBottom="120dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="150dp"
-            android:layout_gravity="bottom" >
-
-            <TextView
-                android:id="@+id/tv_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/app_name"
-                android:textStyle="bold"
-                android:textSize="24sp"
-                android:textColor="#D3D3D3"
-                android:layout_alignParentEnd="true" />
-
-
-            <TextView
-                android:id="@+id/tv_subtitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/name"
-                android:textStyle="bold"
-                android:textSize="@dimen/font_14"
-                android:layout_alignParentEnd="true"/>
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/white_gradient"
-                tools:ignore="ContentDescription" />
-        </RelativeLayout>
-    </FrameLayout>
-
-
+    <TextView
+        android:id="@+id/tv_subtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/dicoding"
+        android:textColor="@color/grey"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:fontFamily="@font/regular"
+        android:layout_marginEnd="14dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title"
+        app:layout_constraintEnd_toEndOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
