@@ -3,20 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="#121212"
     android:layout_height="match_parent">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_fav"
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
     <RelativeLayout
         android:id="@+id/layout_nothing"
-        android:visibility="visible"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -36,6 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/iv_bookmark"
             android:textSize="18sp"
+            android:textColor="#a9a9a9"
             android:fontFamily="@font/italic"
             android:layout_marginTop="@dimen/size_16"
             android:layout_centerHorizontal="true"
