@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import id.fadillah.pemulasubmission.data.model.MangaEntity
 import id.fadillah.pemulasubmission.data.source.network.RemoteDataSource
 import id.fadillah.pemulasubmission.data.source.network.reponse.MangaListItem
+import id.fadillah.pemulasubmission.utils.ConverterHelper
 
 class MangaRepository private constructor(private val remoteDataSource: RemoteDataSource): MangaDataSource {
     companion object {
@@ -22,14 +23,8 @@ class MangaRepository private constructor(private val remoteDataSource: RemoteDa
 
         remoteDataSource.getAllManga(object : RemoteDataSource.LoadMangaCallback {
             override fun onAllMangaReceived(mangaResponse: List<MangaListItem>) {
-                val listManga = ArrayList<MangaEntity>()
-                for (item in mangaResponse) {
-                    listManga.add(
-                        MangaEntity(item.title, item.endpoint, item.thumb)
-                    )
-                }
+                val listManga = ConverterHelper.responsesToListEntity(mangaResponse)
                 mangaResult.postValue(listManga)
-                Log.d("REMOTE", "Data $listManga")
             }
         })
         return mangaResult

@@ -20,10 +20,10 @@ class MangaAdapter: RecyclerView.Adapter<MangaAdapter.MangaViewHolder>() {
     }
     class MangaViewHolder(private val binding: ItemMangaBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(manga: MangaEntity) {
-            binding.also {
-                ImageHelper.getImage(it.ivImageItem, manga.thumbnail)
-                it.tvItemTitle.text = manga.title
-                it.itemContent.setOnClickListener {
+            binding.also { item ->
+                ImageHelper.getImage(item.ivImageItem, manga.thumbnail)
+                item.tvItemTitle.text = manga.title
+                item.itemContent.setOnClickListener {
                     val intent = Intent(it.context, DetailActivity::class.java).apply { 
                         putExtra(EXTRA_ENDPOINT, manga.endpoint)
                     }    
