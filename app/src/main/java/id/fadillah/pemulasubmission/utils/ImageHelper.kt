@@ -2,11 +2,9 @@ package id.fadillah.pemulasubmission.utils
 
 import android.util.Log
 import android.widget.ImageView
-import androidx.constraintlayout.widget.Placeholder
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import id.fadillah.pemulasubmission.R
-import java.lang.Exception
 
 object ImageHelper {
     fun getImage(

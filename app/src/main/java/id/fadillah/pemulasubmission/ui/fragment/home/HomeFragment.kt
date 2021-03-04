@@ -1,18 +1,12 @@
 package id.fadillah.pemulasubmission.ui.fragment.home
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import id.fadillah.pemulasubmission.R
-import id.fadillah.pemulasubmission.data.MangaRepository
 import id.fadillah.pemulasubmission.databinding.FragmentHomeBinding
 import id.fadillah.pemulasubmission.ui.adapter.MangaAdapter
 import id.fadillah.pemulasubmission.viewmodel.ViewModelFactory
@@ -45,17 +39,17 @@ class HomeFragment : Fragment() {
             val factory = ViewModelFactory.getInstance()
             val viewModel = ViewModelProvider(this, factory)[HomeViewModel::class.java]
 
-            setLayout(false)
+            showRecyclerView(false)
             viewModel.getAllManga().observe(viewLifecycleOwner, {manga ->
-                setLayout(true)
+                showRecyclerView(true)
                 mangaAdapter.setData(manga)
                 mangaAdapter.notifyDataSetChanged()
             })
         }
     }
 
-    private fun setLayout(isDone: Boolean) {
-        if (isDone) {
+    private fun showRecyclerView(show: Boolean) {
+        if (show) {
             binding?.layoutShimmer?.visibility = View.GONE
             binding?.rvHome?.visibility = View.VISIBLE
         } else {

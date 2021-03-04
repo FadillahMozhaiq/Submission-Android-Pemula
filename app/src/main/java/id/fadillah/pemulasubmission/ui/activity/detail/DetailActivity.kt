@@ -1,9 +1,9 @@
 package id.fadillah.pemulasubmission.ui.activity.detail
 
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
-import androidx.appcompat.app.AppCompatActivity
 import id.fadillah.pemulasubmission.R
 
 class DetailActivity : AppCompatActivity() {

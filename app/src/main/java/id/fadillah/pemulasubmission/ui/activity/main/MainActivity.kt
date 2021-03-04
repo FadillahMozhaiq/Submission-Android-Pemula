@@ -1,7 +1,7 @@
 package id.fadillah.pemulasubmission.ui.activity.main
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
 import com.fxn.OnBubbleClickListener
 import id.fadillah.pemulasubmission.R

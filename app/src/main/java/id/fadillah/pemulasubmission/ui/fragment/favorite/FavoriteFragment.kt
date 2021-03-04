@@ -1,12 +1,10 @@
 package id.fadillah.pemulasubmission.ui.fragment.favorite
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import androidx.navigation.fragment.findNavController
+import androidx.fragment.app.Fragment
 import id.fadillah.pemulasubmission.R
 
 /**

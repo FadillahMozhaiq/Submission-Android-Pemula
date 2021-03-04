@@ -2,7 +2,6 @@ package id.fadillah.pemulasubmission.data
 
 import androidx.lifecycle.LiveData
 import id.fadillah.pemulasubmission.data.model.MangaEntity
-import id.fadillah.pemulasubmission.data.source.network.RemoteDataSource
 
 interface MangaDataSource {
     fun getAllManga(): LiveData<List<MangaEntity>>

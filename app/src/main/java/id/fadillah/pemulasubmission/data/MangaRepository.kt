@@ -6,8 +6,6 @@ import androidx.lifecycle.MutableLiveData
 import id.fadillah.pemulasubmission.data.model.MangaEntity
 import id.fadillah.pemulasubmission.data.source.network.RemoteDataSource
 import id.fadillah.pemulasubmission.data.source.network.reponse.MangaListItem
-import id.fadillah.pemulasubmission.data.source.network.reponse.MangaResponses
-import id.fadillah.pemulasubmission.utils.ConverterHelper
 
 class MangaRepository private constructor(private val remoteDataSource: RemoteDataSource): MangaDataSource {
     companion object {
