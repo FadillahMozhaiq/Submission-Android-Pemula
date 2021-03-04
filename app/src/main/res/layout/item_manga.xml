@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/item_content"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
@@ -11,17 +12,6 @@
         android:layout_height="220dp"
         android:visibility="visible"
         android:src="@drawable/ic_no_images" />
-
-    <com.facebook.shimmer.ShimmerFrameLayout
-        android:id="@+id/sh_loading"
-        android:layout_width="match_parent"
-        android:visibility="gone"
-        android:layout_height="220dp">
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/placeholder_bg"/>
-    </com.facebook.shimmer.ShimmerFrameLayout>
 
     <TextView
         android:id="@+id/tv_item_title"

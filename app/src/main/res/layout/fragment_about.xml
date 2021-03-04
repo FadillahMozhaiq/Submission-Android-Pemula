@@ -94,11 +94,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_10"
-            android:layout_marginEnd="8dp"
+            android:layout_marginEnd="@dimen/size_16"
             android:src="@drawable/ic_baseline_person_add"
             android:background="@android:color/transparent"
             app:layout_constraintTop_toBottomOf="@+id/tv_email"
-            app:layout_constraintEnd_toEndOf="@id/tv_email"/>
+            app:layout_constraintEnd_toEndOf="parent"/>
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline_about"
@@ -119,6 +119,7 @@
             app:layout_constraintTop_toTopOf="@id/guideline_about"/>
 
         <TextView
+            android:id="@+id/tv_long_Story"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"

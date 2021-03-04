@@ -1,4 +1,6 @@
 package id.fadillah.pemulasubmission.ui.fragment.favorite
 
-class FavoriteViewModel {
+import id.fadillah.pemulasubmission.data.MangaRepository
+
+class FavoriteViewModel(private val mangaRepository: MangaRepository) {
 }

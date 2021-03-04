@@ -10,7 +10,7 @@ interface ApiService {
     @GET("recommended")
     fun getMangas(): Call<MangaResponses>
 
-    @GET("detail/{endPoint}")
+    @GET("manga/detail/{endPoint}")
     fun getDetailManga(
         @Path("endPoint") endPoint: String
     ): Call<MangaDetailResponse>

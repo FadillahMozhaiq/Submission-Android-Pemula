@@ -1,4 +1,26 @@
 package id.fadillah.pemulasubmission.data
 
-class MangaRepository {
+import androidx.lifecycle.LiveData
+import id.fadillah.pemulasubmission.data.model.MangaEntity
+import id.fadillah.pemulasubmission.data.source.network.RemoteDataSource
+import id.fadillah.pemulasubmission.utils.ConverterHelper
+
+class MangaRepository private constructor(private val remoteDataSource: RemoteDataSource): MangaDataSource {
+    companion object {
+        @Volatile
+        private var instance: MangaRepository? = null
+
+        fun getInstance(remoteData: RemoteDataSource): MangaRepository =
+            instance ?: synchronized(this) {
+                instance ?: MangaRepository(remoteData)
+            }
+    }
+    override fun getAllManga(): LiveData<List<MangaEntity>> {
+        val dataResponse = remoteDataSource.getAllManga()
+        return ConverterHelper.responsesToListEntity(dataResponse)
+    }
+
+    override fun getDetailManga(endpoint: String): LiveData<MangaEntity> {
+        TODO("Not yet implemented")
+    }
 }

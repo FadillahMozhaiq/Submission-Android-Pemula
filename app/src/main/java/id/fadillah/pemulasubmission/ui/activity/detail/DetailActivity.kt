@@ -7,6 +7,9 @@ import androidx.appcompat.app.AppCompatActivity
 import id.fadillah.pemulasubmission.R
 
 class DetailActivity : AppCompatActivity() {
+    companion object {
+        const val EXTRA_ENDPOINT = "extra_endpoint"
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
