@@ -24,7 +24,7 @@ class MangaAdapter: RecyclerView.Adapter<MangaAdapter.MangaViewHolder>() {
             binding.also {
                 ImageHelper.getImage(it.ivImageItem, manga.thumbnail)
                 it.tvItemTitle.text = manga.title
-                it.itemContent.setOnClickListener { it ->
+                it.itemContent.setOnClickListener {
                     val intent = Intent(it.context, DetailActivity::class.java).apply { 
                         putExtra(EXTRA_ENDPOINT, manga.endpoint)
                     }    

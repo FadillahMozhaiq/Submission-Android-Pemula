@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
+    android:background="#acacacac"
     android:orientation="vertical">
 
     <ImageView
@@ -11,14 +12,15 @@
         android:layout_width="match_parent"
         android:layout_height="220dp"
         android:visibility="visible"
+        android:scaleType="centerCrop"
         android:src="@drawable/ic_no_images" />
 
     <TextView
         android:id="@+id/tv_item_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="5dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:fontFamily="@font/bold"
         android:text="@string/foo"
         android:textAlignment="center"

@@ -27,34 +27,30 @@ class RemoteDataSource {
             }
     }
 
-    fun getAllManga(): LiveData<List<MangaListItem>> {
-        val resultMangaResponses = MutableLiveData<List<MangaListItem>>()
+    fun getAllManga(callback: LoadMangaCallback) {
 
-        CoroutineScope(Dispatchers.Default).launch {
-            val client = getApiService().getMangas()
+        val client = getApiService().getMangas()
 
-            client.enqueue(object : Callback<MangaResponses> {
-                override fun onResponse(
-                    call: Call<MangaResponses>,
-                    response: Response<MangaResponses>
-                ) {
-                    if (response.isSuccessful) {
-                        val mangas = response.body()?.mangaList
-                        mangas?.let {
-                            resultMangaResponses.postValue(it)
-                        }
-                    } else {
-                        Log.e(TAG, "Error Get Data: ${response.message()}")
+        client.enqueue(object : Callback<MangaResponses> {
+            override fun onResponse(
+                call: Call<MangaResponses>,
+                response: Response<MangaResponses>
+            ) {
+                if (response.isSuccessful) {
+                    val mangas = response.body()?.mangaList
+                    if (mangas != null) {
+                        callback.onAllMangaReceived(mangas)
                     }
+                } else {
+                    Log.e(TAG, "Error Get Data: ${response.message()}")
                 }
+            }
 
-                override fun onFailure(call: Call<MangaResponses>, t: Throwable) {
-                    Log.e(TAG, "onFailure: ${t.message}")
-                }
+            override fun onFailure(call: Call<MangaResponses>, t: Throwable) {
+                Log.e(TAG, "onFailure: ${t.message}")
+            }
 
-            })
-        }
-        return resultMangaResponses
+        })
     }
 
     fun getDetailManga(endpoint: String): LiveData<MangaDetailResponse> {
@@ -86,4 +82,7 @@ class RemoteDataSource {
         return resultDetailManga
     }
 
+    interface LoadMangaCallback {
+        fun onAllMangaReceived(mangaResponse: List<MangaListItem>)
+    }
 }
