@@ -30,4 +30,5 @@
     <string name="genre">Genre</string>
     <string name="synopsis">Synopsis</string>
     <string name="none">-</string>
+    <string name="chapter">Chapter</string>
 </resources>

@@ -134,14 +134,26 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_synopsis_holder" />
 
+        <TextView
+            android:id="@+id/tv_chapter_holder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_16"
+            android:fontFamily="@font/bold"
+            android:text="@string/synopsis"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_synopsis" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_list_chapter"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/size_16"
+            android:layout_marginTop="@dimen/size_8"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_synopsis"
+            app:layout_constraintTop_toBottomOf="@id/tv_chapter_holder"
             tools:listitem="@layout/item_chapter" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
