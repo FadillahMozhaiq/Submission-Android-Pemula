@@ -24,4 +24,9 @@
     <string name="nothing_in_here">Nothing in here..</string>
     <string name="my_email">a1331665@bangkit.academy</string>
     <string name="story">A Little Story About Me</string>
+    <string name="type">Type</string>
+    <string name="author">Author</string>
+    <string name="status">Status</string>
+    <string name="genre">Genre</string>
+    <string name="synopsis">Synopsis</string>
 </resources>
