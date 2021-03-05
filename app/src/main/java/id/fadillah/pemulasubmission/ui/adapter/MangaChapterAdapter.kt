@@ -27,6 +27,7 @@ class MangaChapterAdapter : RecyclerView.Adapter<MangaChapterAdapter.ChapterView
                         Html.FROM_HTML_MODE_LEGACY
                     )
                 } else {
+                    @Suppress("DEPRECATION")
                     tvItemChapter.text = Html.fromHtml("<u>${mangaChapterEntity.chapterTitle}</u>")
                 }
             }
