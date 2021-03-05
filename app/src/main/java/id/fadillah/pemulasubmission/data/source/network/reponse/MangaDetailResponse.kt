@@ -7,6 +7,9 @@ data class MangaDetailResponse(
 	@field:SerializedName("genre_list")
 	val genreList: List<GenreListItem>,
 
+	@field:SerializedName("chapter")
+	val chapter: List<ChapterItem>,
+
 	@field:SerializedName("thumb")
 	val thumb: String,
 
@@ -33,4 +36,13 @@ data class GenreListItem(
 
 	@field:SerializedName("genre_name")
 	val genreName: String
+)
+
+data class ChapterItem(
+
+	@field:SerializedName("chapter_endpoint")
+	val chapterEndpoint: String,
+
+	@field:SerializedName("chapter_title")
+	val chapterTitle: String
 )

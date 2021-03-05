@@ -7,131 +7,285 @@
     android:padding="16dp"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <TextView
-        android:id="@+id/tv_type_holder"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/bold"
-        android:text="@string/type"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/tv_type"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/size_8"
-        android:layout_marginTop="@dimen/size_8"
-        android:fontFamily="@font/semibold"
-        android:textSize="16sp"
-        android:text="@string/none"
-        app:layout_constraintTop_toBottomOf="@+id/tv_type_holder"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/tv_author_holder"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/bold"
-        android:text="@string/author"
-        android:textColor="@color/black"
-        android:layout_marginTop="@dimen/size_16"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_type" />
-
-    <TextView
-        android:id="@+id/tv_author"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/size_8"
-        android:layout_marginTop="@dimen/size_8"
-        android:fontFamily="@font/semibold"
-        android:textSize="16sp"
-        android:text="@string/none"
-        app:layout_constraintTop_toBottomOf="@+id/tv_author_holder"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/tv_status_holder"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/bold"
-        android:text="@string/status"
-        android:textColor="@color/black"
-        android:layout_marginTop="@dimen/size_16"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_author" />
-
-    <TextView
-        android:id="@+id/tv_status"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/size_8"
-        android:layout_marginTop="@dimen/size_8"
-        android:fontFamily="@font/semibold"
-        android:textSize="16sp"
-        android:text="@string/none"
-        app:layout_constraintTop_toBottomOf="@+id/tv_status_holder"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/tv_genre_list_holder"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/bold"
-        android:text="@string/genre"
-        android:textColor="@color/black"
-        android:layout_marginTop="@dimen/size_16"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_status" />
-
-    <TextView
-        android:id="@+id/tv_genre_list"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/size_8"
-        android:layout_marginTop="@dimen/size_8"
-        android:fontFamily="@font/semibold"
-        android:textSize="16sp"
-        android:text="@string/none"
-        app:layout_constraintTop_toBottomOf="@+id/tv_genre_list_holder"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/tv_synopsis_holder"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/bold"
-        android:text="@string/synopsis"
-        android:textColor="@color/black"
-        android:layout_marginTop="@dimen/size_16"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_genre_list" />
-
-    <TextView
-        android:id="@+id/tv_synopsis"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/dummy_long_text"
-        android:justificationMode="inter_word"
-        android:layout_marginTop="@dimen/size_8"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/content_detail_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_synopsis_holder" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_list_chapter"
+        <TextView
+            android:id="@+id/tv_type_holder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/bold"
+            android:text="@string/type"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_8"
+            android:layout_marginTop="@dimen/size_8"
+            android:fontFamily="@font/semibold"
+            android:text="@string/none"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_type_holder" />
+
+        <TextView
+            android:id="@+id/tv_author_holder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_16"
+            android:fontFamily="@font/bold"
+            android:text="@string/author"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_type" />
+
+        <TextView
+            android:id="@+id/tv_author"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_8"
+            android:layout_marginTop="@dimen/size_8"
+            android:fontFamily="@font/semibold"
+            android:text="@string/none"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_author_holder" />
+
+        <TextView
+            android:id="@+id/tv_status_holder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_16"
+            android:fontFamily="@font/bold"
+            android:text="@string/status"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_author" />
+
+        <TextView
+            android:id="@+id/tv_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_8"
+            android:layout_marginTop="@dimen/size_8"
+            android:fontFamily="@font/semibold"
+            android:text="@string/none"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_status_holder" />
+
+        <TextView
+            android:id="@+id/tv_genre_list_holder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_16"
+            android:fontFamily="@font/bold"
+            android:text="@string/genre"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_status" />
+
+        <TextView
+            android:id="@+id/tv_genre_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_8"
+            android:layout_marginTop="@dimen/size_8"
+            android:fontFamily="@font/semibold"
+            android:text="@string/none"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_genre_list_holder" />
+
+        <TextView
+            android:id="@+id/tv_synopsis_holder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_16"
+            android:fontFamily="@font/bold"
+            android:text="@string/synopsis"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_genre_list" />
+
+        <TextView
+            android:id="@+id/tv_synopsis"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_8"
+            android:justificationMode="inter_word"
+            android:text="@string/dummy_long_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_synopsis_holder" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_list_chapter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_16"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_synopsis"
+            tools:listitem="@layout/item_chapter" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/content_detail_shimmer"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/size_16"
-        tools:listitem="@layout/item_chapter"
-        app:layout_constraintTop_toBottomOf="@id/tv_synopsis"
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tv_type_holder_shimmer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/bold"
+                android:text="@string/type"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_type_shimmer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/size_8"
+                android:layout_marginTop="@dimen/size_8"
+                android:fontFamily="@font/semibold"
+                android:textSize="16sp"
+                android:text="@string/none"
+                app:layout_constraintTop_toBottomOf="@+id/tv_type_holder_shimmer"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_author_holder_shimmer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/bold"
+                android:text="@string/author"
+                android:textColor="@color/black"
+                android:layout_marginTop="@dimen/size_16"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_type_shimmer" />
+
+            <TextView
+                android:id="@+id/tv_author_shimmer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/size_8"
+                android:layout_marginTop="@dimen/size_8"
+                android:fontFamily="@font/semibold"
+                android:textSize="16sp"
+                android:text="@string/none"
+                app:layout_constraintTop_toBottomOf="@+id/tv_author_holder_shimmer"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_status_holder_shimmer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/bold"
+                android:text="@string/status"
+                android:textColor="@color/black"
+                android:layout_marginTop="@dimen/size_16"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_author_shimmer" />
+
+            <TextView
+                android:id="@+id/tv_status_shimmer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/size_8"
+                android:layout_marginTop="@dimen/size_8"
+                android:fontFamily="@font/semibold"
+                android:textSize="16sp"
+                android:text="@string/none"
+                app:layout_constraintTop_toBottomOf="@+id/tv_status_holder_shimmer"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_genre_list_holder_shimmer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/bold"
+                android:text="@string/genre"
+                android:textColor="@color/black"
+                android:layout_marginTop="@dimen/size_16"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_status_shimmer" />
+
+            <TextView
+                android:id="@+id/tv_genre_list_shimmer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/size_8"
+                android:layout_marginTop="@dimen/size_8"
+                android:fontFamily="@font/semibold"
+                android:textSize="16sp"
+                android:text="@string/none"
+                app:layout_constraintTop_toBottomOf="@+id/tv_genre_list_holder_shimmer"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_synopsis_holder_shimmer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/bold"
+                android:text="@string/synopsis"
+                android:textColor="@color/black"
+                android:layout_marginTop="@dimen/size_16"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_genre_list_shimmer" />
+
+            <TextView
+                android:id="@+id/tv_synopsis_shimmer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/dummy_long_text"
+                android:layout_marginTop="@dimen/size_8"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_synopsis_holder_shimmer" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_list_chapter_shimmer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size_16"
+                tools:listitem="@layout/item_chapter"
+                app:layout_constraintTop_toBottomOf="@id/tv_synopsis_shimmer"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.facebook.shimmer.ShimmerFrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
