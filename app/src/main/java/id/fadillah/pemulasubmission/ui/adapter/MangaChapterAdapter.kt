@@ -1,4 +1,4 @@
-package id.fadillah.pemulasubmission.ui.activity.detail
+package id.fadillah.pemulasubmission.ui.adapter
 
 import android.os.Build
 import android.text.Html

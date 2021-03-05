@@ -6,18 +6,18 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
+import id.fadillah.pemulasubmission.data.model.MangaEntity
 import id.fadillah.pemulasubmission.databinding.ActivityDetailBinding
+import id.fadillah.pemulasubmission.ui.adapter.MangaChapterAdapter
 import id.fadillah.pemulasubmission.utils.ImageHelper
 import id.fadillah.pemulasubmission.viewmodel.ViewModelFactory
 
 class DetailActivity : AppCompatActivity() {
     companion object {
-        const val EXTRA_ENDPOINT = "extra_endpoint"
-        const val EXTRA_THUMBNAIL = "extra_thumbnail"
+        const val EXTRA_DATA = "extra_data"
+        const val EXTRA_BUNDLE = "extra_bundle"
     }
 
-    private lateinit var endpoint: String
-    private lateinit var thumbnailUrl: String
     private lateinit var binding: ActivityDetailBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,8 +27,8 @@ class DetailActivity : AppCompatActivity() {
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        endpoint = intent.getStringExtra(EXTRA_ENDPOINT) ?: ""
-        thumbnailUrl = intent.getStringExtra(EXTRA_THUMBNAIL) ?: ""
+        val bundle = intent.getBundleExtra(EXTRA_BUNDLE) ?: Bundle.EMPTY
+        val data = bundle.getParcelable(EXTRA_DATA) ?: MangaEntity("Unknown", " ", " ")
         val factory = ViewModelFactory.getInstance()
         val viewModel = ViewModelProvider(this, factory)[DetailViewModel::class.java]
         val adapter = MangaChapterAdapter()
@@ -41,9 +41,9 @@ class DetailActivity : AppCompatActivity() {
             }
             setItemViewCacheSize(20)
         }
-        ImageHelper.getImage(binding.ivDetail, thumbnailUrl)
-        viewModel.getDetailManga(endpoint).observe(this, { manga ->
-            binding.collapsingToolbar.title = manga.title
+        binding.collapsingToolbar.title = data.title
+        ImageHelper.getImage(binding.ivDetail, data.thumbnail)
+        viewModel.getDetailManga(data.endpoint).observe(this, { manga ->
             adapter.setChapter(manga.listChapterEntity)
             adapter.notifyDataSetChanged()
             with(binding.content) {
