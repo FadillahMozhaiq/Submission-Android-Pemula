@@ -26,7 +26,7 @@
         android:layout_marginTop="@dimen/size_8"
         android:fontFamily="@font/semibold"
         android:textSize="16sp"
-        tools:text="Manga"
+        android:text="@string/none"
         app:layout_constraintTop_toBottomOf="@+id/tv_type_holder"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -50,7 +50,7 @@
         android:layout_marginTop="@dimen/size_8"
         android:fontFamily="@font/semibold"
         android:textSize="16sp"
-        tools:text="@string/name"
+        android:text="@string/none"
         app:layout_constraintTop_toBottomOf="@+id/tv_author_holder"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -74,7 +74,7 @@
         android:layout_marginTop="@dimen/size_8"
         android:fontFamily="@font/semibold"
         android:textSize="16sp"
-        tools:text="Ongoing"
+        android:text="@string/none"
         app:layout_constraintTop_toBottomOf="@+id/tv_status_holder"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -98,7 +98,7 @@
         android:layout_marginTop="@dimen/size_8"
         android:fontFamily="@font/semibold"
         android:textSize="16sp"
-        tools:text="Manga, Machu, Hentai"
+        android:text="@string/none"
         app:layout_constraintTop_toBottomOf="@+id/tv_genre_list_holder"
         app:layout_constraintStart_toStartOf="parent" />
 

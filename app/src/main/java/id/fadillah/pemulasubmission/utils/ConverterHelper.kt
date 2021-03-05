@@ -19,6 +19,7 @@ object ConverterHelper {
 
     fun detailResponseToEntity(response: MangaDetailResponse?): MangaEntity {
         response ?: return MangaEntity("Empty", "", "")
+        val genreList = response.genreList.map { it.genreName }
         return MangaEntity(
             response.title,
             response.mangaEndpoint,
@@ -26,7 +27,7 @@ object ConverterHelper {
             response.type,
             response.author,
             response.status,
-            response.genreList.joinToString(),
+            genreList.joinToString(),
             response.synopsis
         )
     }
