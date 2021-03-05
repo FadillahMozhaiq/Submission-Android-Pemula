@@ -1,5 +1,6 @@
 package id.fadillah.pemulasubmission.utils
 
+import id.fadillah.pemulasubmission.data.model.MangaChapterEntity
 import id.fadillah.pemulasubmission.data.model.MangaEntity
 import id.fadillah.pemulasubmission.data.source.network.reponse.MangaDetailResponse
 import id.fadillah.pemulasubmission.data.source.network.reponse.MangaListItem
@@ -20,7 +21,7 @@ object ConverterHelper {
     fun detailResponseToEntity(response: MangaDetailResponse?): MangaEntity {
         response ?: return MangaEntity("Empty", "", "")
         val genreList = response.genreList.map { it.genreName }
-        return MangaEntity(
+        val mangaEntity = MangaEntity(
             response.title,
             response.mangaEndpoint,
             response.thumb,
@@ -30,6 +31,8 @@ object ConverterHelper {
             genreList.joinToString(),
             response.synopsis
         )
+        mangaEntity.listChapterEntity = response.chapter.map { MangaChapterEntity(it.chapterTitle, it.chapterEndpoint) }
+        return mangaEntity
     }
 
 }

@@ -10,4 +10,5 @@
     <color name="grey">#B5B5B5</color>#F32013
     <color name="placeholder_bg">#dddddd</color>
     <color name="red_danger">#F32013</color>
+    <color name="blue_button">#24A0ED</color>
 </resources>
