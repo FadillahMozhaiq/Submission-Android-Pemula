@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import id.fadillah.pemulasubmission.data.model.MangaChapterEntity
 import id.fadillah.pemulasubmission.databinding.ItemChapterBinding
 
-class MangaChapterAdapter: RecyclerView.Adapter<MangaChapterAdapter.ChapterViewHolder>() {
+class MangaChapterAdapter : RecyclerView.Adapter<MangaChapterAdapter.ChapterViewHolder>() {
     private val listChapter = ArrayList<MangaChapterEntity>()
 
     fun setChapter(listChapter: List<MangaChapterEntity>?) {
@@ -17,11 +17,15 @@ class MangaChapterAdapter: RecyclerView.Adapter<MangaChapterAdapter.ChapterViewH
         this.listChapter.addAll(listChapter)
     }
 
-    class ChapterViewHolder(private val itemChapterBinding: ItemChapterBinding): RecyclerView.ViewHolder(itemChapterBinding.root) {
+    class ChapterViewHolder(private val itemChapterBinding: ItemChapterBinding) :
+        RecyclerView.ViewHolder(itemChapterBinding.root) {
         fun bind(mangaChapterEntity: MangaChapterEntity) {
             with(itemChapterBinding) {
                 if (Build.VERSION.SDK_INT > Build.VERSION_CODES.N) {
-                    tvItemChapter.text = Html.fromHtml("<u>${mangaChapterEntity.chapterTitle}</u>", Html.FROM_HTML_MODE_LEGACY)
+                    tvItemChapter.text = Html.fromHtml(
+                        "<u>${mangaChapterEntity.chapterTitle}</u>",
+                        Html.FROM_HTML_MODE_LEGACY
+                    )
                 } else {
                     tvItemChapter.text = Html.fromHtml("<u>${mangaChapterEntity.chapterTitle}</u>")
                 }
