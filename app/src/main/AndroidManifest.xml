@@ -17,6 +17,7 @@
         <activity
             android:name=".ui.activity.splash.SplashActivity"
             android:noHistory="true"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.PemulaSubmission.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,6 +27,7 @@
         </activity>
         <activity
             android:name=".ui.activity.main.MainActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.PemulaSubmission.NoActionBar">
         </activity>
     </application>
