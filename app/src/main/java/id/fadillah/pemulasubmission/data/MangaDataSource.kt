@@ -6,4 +6,5 @@ import id.fadillah.pemulasubmission.data.model.MangaEntity
 interface MangaDataSource {
     fun getAllManga(): LiveData<List<MangaEntity>>
     fun getDetailManga(endpoint: String): LiveData<MangaEntity>
+    fun getQuestManga(query: String): LiveData<List<MangaEntity>>
 }

@@ -1,6 +1,5 @@
 package id.fadillah.pemulasubmission.data
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import id.fadillah.pemulasubmission.data.model.MangaEntity
@@ -41,5 +40,17 @@ class MangaRepository private constructor(private val remoteDataSource: RemoteDa
             }
         })
         return detailResult
+    }
+
+    override fun getQuestManga(query: String): LiveData<List<MangaEntity>> {
+        val mangaResult = MutableLiveData<List<MangaEntity>>()
+
+        remoteDataSource.getQuestManga(query, object : RemoteDataSource.LoadQuestMangaCallback {
+            override fun onAllQuestMangaReceived(mangaResponse: List<MangaListItem>) {
+                val listManga = ConverterHelper.responsesToListEntity(mangaResponse)
+                mangaResult.postValue(listManga)
+            }
+        })
+        return mangaResult
     }
 }

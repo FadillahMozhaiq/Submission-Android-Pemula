@@ -7,4 +7,5 @@ import id.fadillah.pemulasubmission.data.model.MangaEntity
 
 class HomeViewModel(private val mangaRepository: MangaRepository): ViewModel() {
     fun getAllManga(): LiveData<List<MangaEntity>> = mangaRepository.getAllManga()
+    fun getQuestManga(query: String): LiveData<List<MangaEntity>> = mangaRepository.getQuestManga(query)
 }

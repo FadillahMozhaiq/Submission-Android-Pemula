@@ -14,4 +14,9 @@ interface ApiService {
     fun getDetailManga(
         @Path("endPoint") endPoint: String
     ): Call<MangaDetailResponse>
+
+    @GET("search/{query}")
+    fun getQuestManga(
+        @Path("query") query: String
+    ): Call<MangaResponses>
 }

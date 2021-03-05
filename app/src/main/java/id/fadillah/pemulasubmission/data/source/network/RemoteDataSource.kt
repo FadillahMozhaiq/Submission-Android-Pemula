@@ -78,11 +78,40 @@ class RemoteDataSource {
         })
     }
 
+    fun getQuestManga(query: String, callback: LoadQuestMangaCallback) {
+        val client = getApiService().getQuestManga(query)
+
+        client.enqueue(object : Callback<MangaResponses> {
+            override fun onResponse(
+                call: Call<MangaResponses>,
+                response: Response<MangaResponses>
+            ) {
+                if (response.isSuccessful) {
+                    val mangas = response.body()?.mangaList
+                    if (mangas != null) {
+                        callback.onAllQuestMangaReceived(mangas)
+                    }
+                } else {
+                    Log.e(TAG, "Error Get Data: ${response.message()}")
+                }
+            }
+
+            override fun onFailure(call: Call<MangaResponses>, t: Throwable) {
+                Log.e(TAG, "On Failure: ${t.message}")
+            }
+
+        })
+    }
+
     interface LoadMangaCallback {
         fun onAllMangaReceived(mangaResponse: List<MangaListItem>)
     }
 
     interface LoadDetailMangaCallback {
         fun onDetailMangaReceived(mangaDetailResponse: MangaDetailResponse)
+    }
+
+    interface LoadQuestMangaCallback {
+        fun onAllQuestMangaReceived(mangaResponse: List<MangaListItem>)
     }
 }
