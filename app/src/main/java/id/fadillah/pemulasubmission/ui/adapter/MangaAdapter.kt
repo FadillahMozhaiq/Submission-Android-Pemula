@@ -8,6 +8,7 @@ import id.fadillah.pemulasubmission.data.model.MangaEntity
 import id.fadillah.pemulasubmission.databinding.ItemMangaBinding
 import id.fadillah.pemulasubmission.ui.activity.detail.DetailActivity
 import id.fadillah.pemulasubmission.ui.activity.detail.DetailActivity.Companion.EXTRA_ENDPOINT
+import id.fadillah.pemulasubmission.ui.activity.detail.DetailActivity.Companion.EXTRA_THUMBNAIL
 import id.fadillah.pemulasubmission.utils.ImageHelper
 
 class MangaAdapter: RecyclerView.Adapter<MangaAdapter.MangaViewHolder>() {
@@ -26,6 +27,7 @@ class MangaAdapter: RecyclerView.Adapter<MangaAdapter.MangaViewHolder>() {
                 item.itemContent.setOnClickListener {
                     val intent = Intent(it.context, DetailActivity::class.java).apply { 
                         putExtra(EXTRA_ENDPOINT, manga.endpoint)
+                        putExtra(EXTRA_THUMBNAIL, manga.thumbnail)
                     }    
                     it.context.startActivity(intent)
                 }
