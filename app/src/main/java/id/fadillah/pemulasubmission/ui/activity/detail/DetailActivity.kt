@@ -62,11 +62,11 @@ class DetailActivity : AppCompatActivity() {
 
     private fun startLayoutShimmer(start: Boolean) {
         if (start) {
-            binding.content.contentDetailShimmer?.visibility = View.VISIBLE
-            binding.content.contentDetailMain?.visibility = View.GONE
+            binding.content.contentDetailShimmer.visibility = View.VISIBLE
+            binding.content.contentDetailMain.visibility = View.GONE
         } else {
-            binding.content.contentDetailShimmer?.visibility = View.GONE
-            binding.content.contentDetailMain?.visibility = View.VISIBLE
+            binding.content.contentDetailShimmer.visibility = View.GONE
+            binding.content.contentDetailMain.visibility = View.VISIBLE
         }
     }
 

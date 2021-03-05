@@ -150,7 +150,6 @@
         android:id="@+id/content_detail_shimmer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -276,16 +275,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_synopsis_holder_shimmer" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_list_chapter_shimmer"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/size_16"
-                tools:listitem="@layout/item_chapter"
-                app:layout_constraintTop_toBottomOf="@id/tv_synopsis_shimmer"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.facebook.shimmer.ShimmerFrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
