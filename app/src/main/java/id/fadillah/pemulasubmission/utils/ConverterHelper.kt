@@ -1,8 +1,7 @@
 package id.fadillah.pemulasubmission.utils
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import id.fadillah.pemulasubmission.data.model.MangaEntity
+import id.fadillah.pemulasubmission.data.source.network.reponse.MangaDetailResponse
 import id.fadillah.pemulasubmission.data.source.network.reponse.MangaListItem
 
 object ConverterHelper {
@@ -18,7 +17,18 @@ object ConverterHelper {
         return mangaResult
     }
 
-    fun detailResponseToEntity() {
-
+    fun detailResponseToEntity(response: MangaDetailResponse?): MangaEntity {
+        response ?: return MangaEntity("Empty", "", "")
+        return MangaEntity(
+            response.title,
+            response.mangaEndpoint,
+            response.thumb,
+            response.type,
+            response.author,
+            response.status,
+            response.genreList.joinToString(),
+            response.synopsis
+        )
     }
+
 }

@@ -53,36 +53,36 @@ class RemoteDataSource {
         })
     }
 
-    fun getDetailManga(endpoint: String): LiveData<MangaDetailResponse> {
-        val resultDetailManga = MutableLiveData<MangaDetailResponse>()
+    fun getDetailManga(endpoint: String, callback: LoadDetailMangaCallback) {
 
-        CoroutineScope(Dispatchers.Default).launch {
-            val client = getApiService().getDetailManga(endpoint)
+        val client = getApiService().getDetailManga(endpoint)
 
-            client.enqueue(object : Callback<MangaDetailResponse> {
-                override fun onResponse(
-                    call: Call<MangaDetailResponse>,
-                    response: Response<MangaDetailResponse>
-                ) {
-                    if (response.isSuccessful) {
-                        val detailManga = response.body()
-                        detailManga?.let {
-                            resultDetailManga.postValue(it)
-                        }
-                    } else {
-                        Log.e(TAG, "Failed Get Data: ${response.message()}")
+        client.enqueue(object : Callback<MangaDetailResponse> {
+            override fun onResponse(
+                call: Call<MangaDetailResponse>,
+                response: Response<MangaDetailResponse>
+            ) {
+                if (response.isSuccessful) {
+                    val detailManga = response.body()
+                    detailManga?.let {
+                        callback.onDetailMangaReceived(it)
                     }
+                } else {
+                    Log.e(TAG, "Failed Get Data: ${response.message()}")
                 }
+            }
 
-                override fun onFailure(call: Call<MangaDetailResponse>, t: Throwable) {
-                    Log.e(TAG, "On Failure: ${t.message}")
-                }
-            })
-        }
-        return resultDetailManga
+            override fun onFailure(call: Call<MangaDetailResponse>, t: Throwable) {
+                Log.e(TAG, "On Failure: ${t.message}")
+            }
+        })
     }
 
     interface LoadMangaCallback {
         fun onAllMangaReceived(mangaResponse: List<MangaListItem>)
+    }
+
+    interface LoadDetailMangaCallback {
+        fun onDetailMangaReceived(mangaDetailResponse: MangaDetailResponse)
     }
 }

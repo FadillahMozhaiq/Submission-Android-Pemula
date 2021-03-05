@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import id.fadillah.pemulasubmission.data.model.MangaEntity
 import id.fadillah.pemulasubmission.data.source.network.RemoteDataSource
+import id.fadillah.pemulasubmission.data.source.network.reponse.MangaDetailResponse
 import id.fadillah.pemulasubmission.data.source.network.reponse.MangaListItem
 import id.fadillah.pemulasubmission.utils.ConverterHelper
 
@@ -28,10 +29,17 @@ class MangaRepository private constructor(private val remoteDataSource: RemoteDa
             }
         })
         return mangaResult
-//        return ConverterHelper.responsesToListEntity(dataResponse)
     }
 
     override fun getDetailManga(endpoint: String): LiveData<MangaEntity> {
-        TODO("Not yet implemented")
+        val detailResult = MutableLiveData<MangaEntity>()
+
+        remoteDataSource.getDetailManga(endpoint, object : RemoteDataSource.LoadDetailMangaCallback {
+            override fun onDetailMangaReceived(mangaDetailResponse: MangaDetailResponse) {
+                val data = ConverterHelper.detailResponseToEntity(mangaDetailResponse)
+                detailResult.postValue(data)
+            }
+        })
+        return detailResult
     }
 }
