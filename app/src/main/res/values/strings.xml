@@ -1,25 +1,16 @@
 <resources>
     <string name="app_name">Pemula Submission</string>
     <string name="title_activity_detail">DetailActivity</string>
-    <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
-
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="home">Home</string>
     <string name="favorite">Favorite</string>
     <string name="about">About</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="android_pemula">Android Pemula</string>
     <string name="dicoding">Dicoding Academy</string>
 
     <string name="dummy_long_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc bibendum eros a dui viverra, at viverra ipsum dignissim. Quisque eu purus dictum dolor aliquam facilisis nec a lorem. Vivamus non ipsum massa. Suspendisse mollis, neque ac euismod tempor, orci tellus ultricies purus, nec vulputate velit lectus vitae dui.\n\nFusce congue interdum finibus. Phasellus sed leo enim. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aliquam molestie semper consequat. </string>
     <string name="name">Fadillah Mozhaiq\nRamadhani</string>
     <string name="hello_reviewer">Hello, Reviewer</string>
-    <string name="search_anime">Search Anime</string>
+    <string name="search_anime">Search Manga</string>
     <string name="foo">Lorem ipsum</string>
     <string name="nothing_in_here">Nothing in here..</string>
     <string name="my_email">a1331665@bangkit.academy</string>

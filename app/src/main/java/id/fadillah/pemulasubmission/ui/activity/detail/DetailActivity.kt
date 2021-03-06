@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
+import id.fadillah.pemulasubmission.R
 import id.fadillah.pemulasubmission.data.model.MangaEntity
 import id.fadillah.pemulasubmission.databinding.ActivityDetailBinding
 import id.fadillah.pemulasubmission.ui.adapter.MangaChapterAdapter
@@ -19,6 +20,7 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private lateinit var binding: ActivityDetailBinding
+    private var fabFlag: Boolean = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,6 +62,29 @@ class DetailActivity : AppCompatActivity() {
             Snackbar.make(view, "Not implemented yet!", Snackbar.LENGTH_LONG)
                 .setAction("Action") { TODO("Not yet implemented") }.show()
         }
+
+        binding.fabContainer.setOnClickListener {
+            if (fabFlag) {
+                with(binding) {
+                    fabBookmark.show()
+                    fabShare.show()
+                    fabShare.animate().translationY((-(fabBookmark.customSize + fabContainer.customSize)).toFloat())
+                    fabBookmark.animate().translationY((-(fabContainer.customSize)).toFloat())
+                    fabContainer.setImageResource(R.drawable.ic_baseline_clear)
+                }
+                fabFlag = false;
+            }else {
+                with(binding) {
+                    fabShare.hide();
+                    fabBookmark.hide();
+                    fabShare.animate().translationY(0F)
+                    fabBookmark.animate().translationY(0F)
+                    fabContainer.setImageResource(R.drawable.ic_baseline_add)
+                }
+                fabFlag = true;
+            }
+        }
+
 
     }
 
