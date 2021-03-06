@@ -75,13 +75,13 @@ class DetailActivity : AppCompatActivity() {
                 fabFlag = false;
             }else {
                 with(binding) {
-                    fabShare.hide();
-                    fabBookmark.hide();
+                    fabShare.hide()
+                    fabBookmark.hide()
                     fabShare.animate().translationY(0F)
                     fabBookmark.animate().translationY(0F)
                     fabContainer.setImageResource(R.drawable.ic_baseline_add)
                 }
-                fabFlag = true;
+                fabFlag = true
             }
         }
 
