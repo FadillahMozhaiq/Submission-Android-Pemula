@@ -1,6 +1,9 @@
 package id.fadillah.pemulasubmission.ui.fragment.home
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,6 +21,7 @@ class HomeFragment : Fragment() {
 
     private var binding: FragmentHomeBinding? = null
     private lateinit var mangaAdapter: MangaAdapter
+    private lateinit var viewModel: HomeViewModel
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -37,7 +41,7 @@ class HomeFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         if (activity != null) {
             val factory = ViewModelFactory.getInstance()
-            val viewModel = ViewModelProvider(this, factory)[HomeViewModel::class.java]
+            viewModel = ViewModelProvider(this, factory)[HomeViewModel::class.java]
 
             showRecyclerView(false)
             viewModel.getAllManga().observe(viewLifecycleOwner, {manga ->
@@ -45,6 +49,51 @@ class HomeFragment : Fragment() {
                 mangaAdapter.setData(manga)
                 mangaAdapter.notifyDataSetChanged()
             })
+
+            binding?.edtSearch?.addTextChangedListener(object : TextWatcher {
+                override fun beforeTextChanged(
+                    s: CharSequence?,
+                    start: Int,
+                    count: Int,
+                    after: Int
+                ) { }
+                override fun afterTextChanged(s: Editable?) { }
+
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                    showRecyclerView(false)
+                    viewModel.getQuestManga(s.toString()).observe(viewLifecycleOwner, {manga ->
+                        if (manga.isNotEmpty()) {
+                            showEmptyLayout(false)
+                            showRecyclerView(true)
+                            mangaAdapter.setData(manga)
+                            mangaAdapter.notifyDataSetChanged()
+                        } else {
+                            showRecyclerView(true)
+                            showEmptyLayout(true)
+                        }
+                    })
+                }
+            })
+
+            binding?.swipeLayout?.setOnRefreshListener {
+                showRecyclerView(false)
+                viewModel.getAllManga().observe(viewLifecycleOwner, {manga ->
+                    mangaAdapter.setData(manga)
+                    mangaAdapter.notifyDataSetChanged()
+                    showRecyclerView(true)
+                    binding?.swipeLayout?.isRefreshing = false
+                })
+            }
+        }
+    }
+
+    private fun showEmptyLayout(show: Boolean) {
+        if (show) {
+            binding?.layoutEmpty?.visibility = View.VISIBLE
+            binding?.rvHome?.visibility = View.GONE
+        } else {
+            binding?.layoutEmpty?.visibility = View.GONE
+            binding?.rvHome?.visibility = View.VISIBLE
         }
     }
 
