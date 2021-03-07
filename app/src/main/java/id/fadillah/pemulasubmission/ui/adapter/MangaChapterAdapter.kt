@@ -6,6 +6,7 @@ import android.text.Html
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import id.fadillah.pemulasubmission.data.model.ChapterEntity
 import id.fadillah.pemulasubmission.data.model.MangaChapterEntity
 import id.fadillah.pemulasubmission.databinding.ItemChapterBinding
 import id.fadillah.pemulasubmission.ui.activity.chapterview.ChapterViewActivity
@@ -35,7 +36,12 @@ class MangaChapterAdapter : RecyclerView.Adapter<MangaChapterAdapter.ChapterView
                 }
                 chapterContainer.setOnClickListener {
                     val intent = Intent(it.context, ChapterViewActivity::class.java).apply {
-                        putExtra(EXTRA_CHAPTER_URL, mangaChapterEntity.chapterEndpoint)
+                        val parcelable = ChapterEntity(
+                            mangaChapterEntity.chapterEndpoint ?: " ",
+                            0,
+                            mangaChapterEntity.chapterTitle
+                        )
+                        putExtra(EXTRA_CHAPTER_URL, parcelable)
                     }
                     it.context.startActivity(intent)
                 }
