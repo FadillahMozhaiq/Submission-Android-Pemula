@@ -38,5 +38,14 @@ class ChapterViewActivity : AppCompatActivity() {
             chapterAdapter.notifyDataSetChanged()
             binding.pbChapterView.visibility = View.GONE
         })
+
+        binding.ibBack.setOnClickListener {
+            onBackPressed()
+        }
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finish()
     }
 }
