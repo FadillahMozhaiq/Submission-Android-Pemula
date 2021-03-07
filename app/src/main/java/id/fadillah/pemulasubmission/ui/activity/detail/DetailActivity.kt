@@ -40,6 +40,7 @@ class DetailActivity : AppCompatActivity() {
             layoutManager = LinearLayoutManager(this@DetailActivity)
             this.adapter = adapter.apply {
                 setHasStableIds(true)
+                setHasFixedSize(true)
             }
             setItemViewCacheSize(20)
         }
