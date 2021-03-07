@@ -40,8 +40,8 @@ class DetailActivity : AppCompatActivity() {
             layoutManager = LinearLayoutManager(this@DetailActivity)
             this.adapter = adapter.apply {
                 setHasStableIds(true)
-                setHasFixedSize(true)
             }
+            setHasFixedSize(true)
             setItemViewCacheSize(20)
         }
         binding.collapsingToolbar.title = data.title

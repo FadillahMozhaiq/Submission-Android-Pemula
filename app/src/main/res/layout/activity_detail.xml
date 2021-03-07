@@ -29,9 +29,18 @@
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
                 android:fitsSystemWindows="true"
-                android:src="@drawable/ic_no_images"
+                android:src="@drawable/bg_naruto"
                 app:layout_collapseMode="parallax"
                 tools:ignore="ContentDescription"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:fitsSystemWindows="true"
+                android:background="@drawable/bg_detail_picture"
+                app:layout_collapseMode="parallax"
+                tools:ignore="ContentDescription" />
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
