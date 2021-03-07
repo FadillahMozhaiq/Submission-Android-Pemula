@@ -45,7 +45,9 @@
             app:layout_constraintStart_toStartOf="parent"
             app:cardElevation="12dp"
             app:cardCornerRadius="8dp">
+
             <ImageView
+                android:id="@+id/iv_profile_photo"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="@dimen/margin_5"

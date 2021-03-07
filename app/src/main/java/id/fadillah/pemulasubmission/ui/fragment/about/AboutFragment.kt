@@ -5,13 +5,18 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
 import id.fadillah.pemulasubmission.R
 import id.fadillah.pemulasubmission.databinding.FragmentAboutBinding
+import id.fadillah.pemulasubmission.ui.activity.ImageViewActivity
+import id.fadillah.pemulasubmission.ui.activity.ImageViewActivity.Companion.EXTRA_DETAIL_IMAGE
+import id.fadillah.pemulasubmission.ui.activity.ImageViewActivity.Companion.EXTRA_DETAIL_IMAGE_TITLE
 import id.fadillah.pemulasubmission.utils.UrlHelper.URL_LinkedIn
 
 class AboutFragment : Fragment() {
@@ -48,7 +53,8 @@ class AboutFragment : Fragment() {
                     Snackbar.make(
                         binding!!.root,
                         "Can't open LinkedIn\nError: ${e.message}",
-                        Snackbar.LENGTH_LONG)
+                        Snackbar.LENGTH_LONG
+                    )
                         .setAction("Okay") {  }
                         .setBackgroundTint(resources.getColor(R.color.red_danger))
                         .show()
@@ -57,6 +63,20 @@ class AboutFragment : Fragment() {
                 val intent = Intent(Intent.ACTION_VIEW, Uri.parse(URL_LinkedIn))
                 startActivity(intent)
             }
+        }
+        binding?.ivPoster?.setOnClickListener {
+            val intent = Intent(context, ImageViewActivity::class.java).apply {
+                putExtra(EXTRA_DETAIL_IMAGE, "PosterAndroid")
+                putExtra(EXTRA_DETAIL_IMAGE_TITLE, "Poster Android")
+            }
+            startActivity(intent)
+        }
+        binding?.ivProfilePhoto?.setOnClickListener {
+            val intent = Intent(context, ImageViewActivity::class.java).apply {
+                putExtra(EXTRA_DETAIL_IMAGE, "PhotoProfile")
+                putExtra(EXTRA_DETAIL_IMAGE_TITLE, "Photo Profile")
+            }
+            startActivity(intent)
         }
     }
 

@@ -1,5 +1,6 @@
 package id.fadillah.pemulasubmission.ui.activity.detail
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -9,6 +10,9 @@ import com.google.android.material.snackbar.Snackbar
 import id.fadillah.pemulasubmission.R
 import id.fadillah.pemulasubmission.data.model.MangaEntity
 import id.fadillah.pemulasubmission.databinding.ActivityDetailBinding
+import id.fadillah.pemulasubmission.ui.activity.ImageViewActivity
+import id.fadillah.pemulasubmission.ui.activity.ImageViewActivity.Companion.EXTRA_DETAIL_IMAGE
+import id.fadillah.pemulasubmission.ui.activity.ImageViewActivity.Companion.EXTRA_DETAIL_IMAGE_TITLE
 import id.fadillah.pemulasubmission.ui.adapter.MangaChapterAdapter
 import id.fadillah.pemulasubmission.utils.ImageHelper
 import id.fadillah.pemulasubmission.viewmodel.ViewModelFactory
@@ -35,6 +39,7 @@ class DetailActivity : AppCompatActivity() {
         val viewModel = ViewModelProvider(this, factory)[DetailViewModel::class.java]
         val adapter = MangaChapterAdapter()
 
+//        Inisialisasi View
         startLayoutShimmer(true)
         with(binding.content.rvListChapter) {
             layoutManager = LinearLayoutManager(this@DetailActivity)
@@ -59,6 +64,7 @@ class DetailActivity : AppCompatActivity() {
             startLayoutShimmer(false)
         })
 
+//        OnClickListener View
         binding.fabBookmark.setOnClickListener { view ->
             Snackbar.make(view, "Not implemented yet!", Snackbar.LENGTH_LONG)
                 .setAction("Action") { TODO("Not yet implemented") }.show()
@@ -84,6 +90,14 @@ class DetailActivity : AppCompatActivity() {
                 }
                 fabFlag = true
             }
+        }
+
+        binding.ivDetail.setOnClickListener {
+            val intent = Intent(this, ImageViewActivity::class.java).apply {
+                putExtra(EXTRA_DETAIL_IMAGE, data.thumbnail)
+                putExtra(EXTRA_DETAIL_IMAGE_TITLE, data.title)
+            }
+            startActivity(intent)
         }
 
 

@@ -22,6 +22,25 @@ object ImageHelper {
                 override fun onSuccess() {}
 
                 override fun onError(e: Exception?) {
+                    Log.e(TAG, "Error: ${e?.message}")
+                    Log.e(TAG, "URL: ${e?.message}")
+                }
+            })
+    }
+    fun getImage(
+        imageView: ImageView,
+        url: Int,
+        placeholder: Int = R.drawable.placeholder,
+        error: Int = R.drawable.ic_no_images
+    ) {
+        Picasso.get()
+            .load(url)
+            .placeholder(placeholder)
+            .error(error)
+            .into(imageView, object : Callback {
+                override fun onSuccess() {}
+
+                override fun onError(e: Exception?) {
                     Log.e("Picasso", "Error: ${e?.message}")
                     Log.e("Picasso", "URL: ${e?.message}")
                 }
