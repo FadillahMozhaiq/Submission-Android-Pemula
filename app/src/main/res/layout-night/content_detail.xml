@@ -174,7 +174,7 @@
             <View
                 android:id="@+id/tv_type_holder_shimmer"
                 android:layout_width="60dp"
-                android:layout_height="16dp"
+                android:layout_height="24dp"
                 android:background="@drawable/ic_no_images"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -182,7 +182,7 @@
             <View
                 android:id="@+id/tv_type_shimmer"
                 android:layout_width="100dp"
-                android:layout_height="16dp"
+                android:layout_height="24dp"
                 android:layout_marginStart="@dimen/size_8"
                 android:layout_marginTop="@dimen/size_8"
                 android:background="@drawable/ic_no_images"
@@ -192,7 +192,7 @@
             <View
                 android:id="@+id/tv_author_holder_shimmer"
                 android:layout_width="60dp"
-                android:layout_height="16dp"
+                android:layout_height="24dp"
                 android:layout_marginTop="@dimen/size_16"
                 android:background="@drawable/ic_no_images"
                 app:layout_constraintStart_toStartOf="parent"
@@ -201,7 +201,7 @@
             <View
                 android:id="@+id/tv_author_shimmer"
                 android:layout_width="100dp"
-                android:layout_height="16dp"
+                android:layout_height="24dp"
                 android:layout_marginStart="@dimen/size_8"
                 android:layout_marginTop="@dimen/size_8"
                 android:background="@drawable/ic_no_images"
@@ -211,7 +211,7 @@
             <View
                 android:id="@+id/tv_status_holder_shimmer"
                 android:layout_width="60dp"
-                android:layout_height="16dp"
+                android:layout_height="24dp"
                 android:layout_marginTop="@dimen/size_16"
                 android:background="@drawable/ic_no_images"
                 app:layout_constraintStart_toStartOf="parent"
@@ -220,7 +220,7 @@
             <View
                 android:id="@+id/tv_status_shimmer"
                 android:layout_width="100dp"
-                android:layout_height="16dp"
+                android:layout_height="24dp"
                 android:layout_marginStart="@dimen/size_8"
                 android:layout_marginTop="@dimen/size_8"
                 android:background="@drawable/ic_no_images"
@@ -230,7 +230,7 @@
             <View
                 android:id="@+id/tv_genre_list_holder_shimmer"
                 android:layout_width="60dp"
-                android:layout_height="16dp"
+                android:layout_height="24dp"
                 android:layout_marginTop="@dimen/size_16"
                 android:background="@drawable/ic_no_images"
                 app:layout_constraintStart_toStartOf="parent"
@@ -239,7 +239,7 @@
             <View
                 android:id="@+id/tv_genre_list_shimmer"
                 android:layout_width="100dp"
-                android:layout_height="16dp"
+                android:layout_height="24dp"
                 android:layout_marginStart="@dimen/size_8"
                 android:layout_marginTop="@dimen/size_8"
                 android:background="@drawable/ic_no_images"
@@ -249,7 +249,7 @@
             <View
                 android:id="@+id/tv_synopsis_holder_shimmer"
                 android:layout_width="60dp"
-                android:layout_height="16dp"
+                android:layout_height="24dp"
                 android:layout_marginTop="@dimen/size_16"
                 android:background="@drawable/ic_no_images"
                 app:layout_constraintStart_toStartOf="parent"
@@ -258,7 +258,7 @@
             <View
                 android:id="@+id/tv_synopsis_shimmer1"
                 android:layout_width="match_parent"
-                android:layout_height="16dp"
+                android:layout_height="24dp"
                 android:layout_marginEnd="@dimen/size_16"
                 android:layout_marginTop="@dimen/size_8"
                 android:background="@drawable/ic_no_images"
@@ -269,7 +269,7 @@
             <View
                 android:id="@+id/tv_synopsis_shimmer2"
                 android:layout_width="match_parent"
-                android:layout_height="16dp"
+                android:layout_height="24dp"
                 android:layout_marginEnd="@dimen/size_16"
                 android:layout_marginTop="2dp"
                 android:background="@drawable/ic_no_images"
@@ -280,7 +280,7 @@
             <View
                 android:id="@+id/tv_synopsis_shimmer3"
                 android:layout_width="match_parent"
-                android:layout_height="16dp"
+                android:layout_height="24dp"
                 android:layout_marginEnd="@dimen/size_16"
                 android:layout_marginTop="2dp"
                 android:background="@drawable/ic_no_images"
@@ -291,7 +291,7 @@
             <View
                 android:id="@+id/tv_synopsis_shimmer4"
                 android:layout_width="match_parent"
-                android:layout_height="16dp"
+                android:layout_height="24dp"
                 android:layout_marginEnd="@dimen/size_16"
                 android:layout_marginTop="2dp"
                 android:background="@drawable/ic_no_images"
