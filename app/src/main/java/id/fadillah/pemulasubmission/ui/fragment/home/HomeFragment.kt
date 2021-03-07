@@ -91,9 +91,11 @@ class HomeFragment : Fragment() {
         if (show) {
             binding?.layoutEmpty?.visibility = View.VISIBLE
             binding?.rvHome?.visibility = View.GONE
+            binding?.tvCollection?.visibility = View.GONE
         } else {
             binding?.layoutEmpty?.visibility = View.GONE
             binding?.rvHome?.visibility = View.VISIBLE
+            binding?.tvCollection?.visibility = View.VISIBLE
         }
     }
 
@@ -101,9 +103,11 @@ class HomeFragment : Fragment() {
         if (show) {
             binding?.layoutShimmer?.visibility = View.GONE
             binding?.rvHome?.visibility = View.VISIBLE
+            binding?.tvCollection?.visibility = View.VISIBLE
         } else {
             binding?.layoutShimmer?.visibility = View.VISIBLE
             binding?.rvHome?.visibility = View.GONE
+            binding?.tvCollection?.visibility = View.GONE
         }
     }
 }

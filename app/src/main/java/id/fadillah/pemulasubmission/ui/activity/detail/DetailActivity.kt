@@ -68,8 +68,8 @@ class DetailActivity : AppCompatActivity() {
                 with(binding) {
                     fabBookmark.show()
                     fabShare.show()
-                    fabShare.animate().translationY((-(fabBookmark.customSize + fabContainer.customSize)).toFloat())
-                    fabBookmark.animate().translationY((-(fabContainer.customSize)).toFloat())
+                    fabShare.animate().translationY((-(fabBookmark.size + fabContainer.size)).toFloat())
+                    fabBookmark.animate().translationY((-(fabContainer.size)).toFloat())
                     fabContainer.setImageResource(R.drawable.ic_baseline_clear)
                 }
                 fabFlag = false;

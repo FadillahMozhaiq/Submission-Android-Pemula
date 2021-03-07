@@ -29,19 +29,16 @@
             android:hint="@string/search_anime"
             android:textColorHint="#121212"
             android:imeOptions="actionSearch"
-            android:inputType="text"
+            android:drawableStart="@drawable/ic_baseline_search"
+            android:drawableTint="#dddddddd"
+            android:drawablePadding="6dp"
+            android:maxLines="1"
+            android:inputType="textCapSentences"
             android:paddingStart="@dimen/size_16"
             android:paddingEnd="@dimen/size_16"
             android:textColor="#121212"
             android:textSize="@dimen/font_16"
             android:importantForAutofill="no" />
-
-        <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:padding="6dp"
-            android:src="@drawable/ic_baseline_search"
-            app:tint="#dddddddd" />
     </LinearLayout>
 
     <RelativeLayout
@@ -69,6 +66,7 @@
 
     <com.facebook.shimmer.ShimmerFrameLayout
         android:id="@+id/layout_shimmer"
+        android:visibility="gone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
@@ -142,9 +140,20 @@
 
     </com.facebook.shimmer.ShimmerFrameLayout>
 
+    <TextView
+        android:id="@+id/tv_collection"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/extrabold"
+        android:textColor="@color/white"
+        android:layout_marginTop="@dimen/size_16"
+        android:layout_marginStart="@dimen/size_16"
+        android:layout_marginBottom="@dimen/size_8"
+        android:text="@string/our_manga_collection"
+        android:textSize="16sp" />
+
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipe_layout"
-        android:layout_marginTop="@dimen/size_16"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
