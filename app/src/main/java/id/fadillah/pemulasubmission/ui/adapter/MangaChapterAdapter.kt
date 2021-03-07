@@ -1,5 +1,6 @@
 package id.fadillah.pemulasubmission.ui.adapter
 
+import android.content.Intent
 import android.os.Build
 import android.text.Html
 import android.view.LayoutInflater
@@ -7,6 +8,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import id.fadillah.pemulasubmission.data.model.MangaChapterEntity
 import id.fadillah.pemulasubmission.databinding.ItemChapterBinding
+import id.fadillah.pemulasubmission.ui.activity.chapterview.ChapterViewActivity
+import id.fadillah.pemulasubmission.ui.activity.chapterview.ChapterViewActivity.Companion.EXTRA_CHAPTER_URL
 
 class MangaChapterAdapter : RecyclerView.Adapter<MangaChapterAdapter.ChapterViewHolder>() {
     private val listChapter = ArrayList<MangaChapterEntity>()
@@ -29,6 +32,12 @@ class MangaChapterAdapter : RecyclerView.Adapter<MangaChapterAdapter.ChapterView
                 } else {
                     @Suppress("DEPRECATION")
                     tvItemChapter.text = Html.fromHtml("<u>${mangaChapterEntity.chapterTitle}</u>")
+                }
+                chapterContainer.setOnClickListener {
+                    val intent = Intent(it.context, ChapterViewActivity::class.java).apply {
+                        putExtra(EXTRA_CHAPTER_URL, mangaChapterEntity.chapterEndpoint)
+                    }
+                    it.context.startActivity(intent)
                 }
             }
         }

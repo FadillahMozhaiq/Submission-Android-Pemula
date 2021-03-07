@@ -1,4 +1,4 @@
-package id.fadillah.pemulasubmission.ui.activity
+package id.fadillah.pemulasubmission.ui.activity.imagedetail
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

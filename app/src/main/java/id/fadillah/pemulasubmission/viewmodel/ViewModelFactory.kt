@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import id.fadillah.pemulasubmission.data.MangaRepository
 import id.fadillah.pemulasubmission.di.Injection
+import id.fadillah.pemulasubmission.ui.activity.chapterview.ChapterViewModel
 import id.fadillah.pemulasubmission.ui.activity.detail.DetailViewModel
 import id.fadillah.pemulasubmission.ui.fragment.favorite.FavoriteViewModel
 import id.fadillah.pemulasubmission.ui.fragment.home.HomeViewModel
@@ -28,6 +29,8 @@ class ViewModelFactory private constructor(private val mangaRepository: MangaRep
                 FavoriteViewModel(mangaRepository) as T
             modelClass.isAssignableFrom(DetailViewModel::class.java) ->
                 DetailViewModel(mangaRepository) as T
+            modelClass.isAssignableFrom(ChapterViewModel::class.java) ->
+                ChapterViewModel(mangaRepository) as T
             else -> throw Throwable("Unknown ViewModel class: " + modelClass.name)
         }
     }

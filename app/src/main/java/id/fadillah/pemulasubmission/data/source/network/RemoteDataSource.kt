@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import id.fadillah.pemulasubmission.data.source.network.ApiConfig.Companion.getApiService
+import id.fadillah.pemulasubmission.data.source.network.reponse.ChapterResponse
 import id.fadillah.pemulasubmission.data.source.network.reponse.MangaDetailResponse
 import id.fadillah.pemulasubmission.data.source.network.reponse.MangaListItem
 import id.fadillah.pemulasubmission.data.source.network.reponse.MangaResponses
@@ -103,6 +104,31 @@ class RemoteDataSource {
         })
     }
 
+    fun getMangaChapters(endpoint: String, callback: LoadChaptersCallback) {
+        val client = getApiService().getChapters(endpoint)
+
+        client.enqueue(object : Callback<ChapterResponse> {
+            override fun onResponse(
+                call: Call<ChapterResponse>,
+                response: Response<ChapterResponse>
+            ) {
+                if (response.isSuccessful) {
+                    val chapters = response.body()
+                    chapters?.let {
+                        callback.onAllChaptesReceived(it)
+                    }
+                } else {
+                    Log.e(TAG, "Failed Get Data: ${response.message()}")
+                }
+            }
+
+            override fun onFailure(call: Call<ChapterResponse>, t: Throwable) {
+                Log.e(TAG, "On Failure: ${t.message}")
+            }
+        })
+
+    }
+
     interface LoadMangaCallback {
         fun onAllMangaReceived(mangaResponse: List<MangaListItem>)
     }
@@ -113,5 +139,9 @@ class RemoteDataSource {
 
     interface LoadQuestMangaCallback {
         fun onAllQuestMangaReceived(mangaResponse: List<MangaListItem>)
+    }
+
+    interface LoadChaptersCallback {
+        fun onAllChaptesReceived(chapterResponse: ChapterResponse)
     }
 }

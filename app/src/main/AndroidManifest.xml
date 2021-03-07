@@ -12,7 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PemulaSubmission">
         <activity
-            android:name=".ui.activity.ImageViewActivity" />
+            android:name=".ui.activity.chapterview.ChapterViewActivity"
+            android:theme="@style/Theme.PemulaSubmission.NoActionBar" />
+        <activity android:name=".ui.activity.imagedetail.ImageViewActivity" />
         <activity
             android:name=".ui.activity.detail.DetailActivity"
             android:label="@string/title_activity_detail"

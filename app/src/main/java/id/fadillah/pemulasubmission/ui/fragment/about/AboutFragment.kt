@@ -5,18 +5,16 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
 import id.fadillah.pemulasubmission.R
 import id.fadillah.pemulasubmission.databinding.FragmentAboutBinding
-import id.fadillah.pemulasubmission.ui.activity.ImageViewActivity
-import id.fadillah.pemulasubmission.ui.activity.ImageViewActivity.Companion.EXTRA_DETAIL_IMAGE
-import id.fadillah.pemulasubmission.ui.activity.ImageViewActivity.Companion.EXTRA_DETAIL_IMAGE_TITLE
+import id.fadillah.pemulasubmission.ui.activity.imagedetail.ImageViewActivity
+import id.fadillah.pemulasubmission.ui.activity.imagedetail.ImageViewActivity.Companion.EXTRA_DETAIL_IMAGE
+import id.fadillah.pemulasubmission.ui.activity.imagedetail.ImageViewActivity.Companion.EXTRA_DETAIL_IMAGE_TITLE
 import id.fadillah.pemulasubmission.utils.UrlHelper.URL_LinkedIn
 
 class AboutFragment : Fragment() {

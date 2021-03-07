@@ -2,8 +2,10 @@ package id.fadillah.pemulasubmission.data
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import id.fadillah.pemulasubmission.data.model.ChapterEntity
 import id.fadillah.pemulasubmission.data.model.MangaEntity
 import id.fadillah.pemulasubmission.data.source.network.RemoteDataSource
+import id.fadillah.pemulasubmission.data.source.network.reponse.ChapterResponse
 import id.fadillah.pemulasubmission.data.source.network.reponse.MangaDetailResponse
 import id.fadillah.pemulasubmission.data.source.network.reponse.MangaListItem
 import id.fadillah.pemulasubmission.utils.ConverterHelper
@@ -52,5 +54,17 @@ class MangaRepository private constructor(private val remoteDataSource: RemoteDa
             }
         })
         return mangaResult
+    }
+
+    override fun getChapterManga(endpoint: String): LiveData<List<ChapterEntity>> {
+        val listChapter = MutableLiveData<List<ChapterEntity>>()
+
+        remoteDataSource.getMangaChapters(endpoint, object : RemoteDataSource.LoadChaptersCallback {
+            override fun onAllChaptesReceived(chapterResponse: ChapterResponse) {
+                val listChapters = ConverterHelper.chapterResponseToChapterEntity(chapterResponse.chapterImage)
+                listChapter.postValue(listChapters)
+            }
+        })
+        return listChapter
     }
 }

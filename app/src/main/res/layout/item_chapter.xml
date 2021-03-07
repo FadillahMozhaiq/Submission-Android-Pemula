@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:id="@+id/chapter_container">
 
     <TextView
         android:id="@+id/tv_item_chapter"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
         android:fontFamily="@font/semibold"
         android:textColor="@color/blue_button"
-        android:layout_marginBottom="2dp"
         tools:text="Chapter 50 - Naruto Mengalahkan Ootsuki" />
 
 </LinearLayout>

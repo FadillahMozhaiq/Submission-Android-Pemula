@@ -1,5 +1,6 @@
 package id.fadillah.pemulasubmission.data.source.network
 
+import id.fadillah.pemulasubmission.data.source.network.reponse.ChapterResponse
 import id.fadillah.pemulasubmission.data.source.network.reponse.MangaDetailResponse
 import id.fadillah.pemulasubmission.data.source.network.reponse.MangaResponses
 import retrofit2.Call
@@ -19,4 +20,9 @@ interface ApiService {
     fun getQuestManga(
         @Path("query") query: String
     ): Call<MangaResponses>
+
+    @GET("chapter/{endpoint}")
+    fun getChapters(
+        @Path("endpoint") endPoint: String
+    ): Call<ChapterResponse>
 }

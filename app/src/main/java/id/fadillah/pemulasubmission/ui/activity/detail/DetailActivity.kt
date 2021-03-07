@@ -10,9 +10,9 @@ import com.google.android.material.snackbar.Snackbar
 import id.fadillah.pemulasubmission.R
 import id.fadillah.pemulasubmission.data.model.MangaEntity
 import id.fadillah.pemulasubmission.databinding.ActivityDetailBinding
-import id.fadillah.pemulasubmission.ui.activity.ImageViewActivity
-import id.fadillah.pemulasubmission.ui.activity.ImageViewActivity.Companion.EXTRA_DETAIL_IMAGE
-import id.fadillah.pemulasubmission.ui.activity.ImageViewActivity.Companion.EXTRA_DETAIL_IMAGE_TITLE
+import id.fadillah.pemulasubmission.ui.activity.imagedetail.ImageViewActivity
+import id.fadillah.pemulasubmission.ui.activity.imagedetail.ImageViewActivity.Companion.EXTRA_DETAIL_IMAGE
+import id.fadillah.pemulasubmission.ui.activity.imagedetail.ImageViewActivity.Companion.EXTRA_DETAIL_IMAGE_TITLE
 import id.fadillah.pemulasubmission.ui.adapter.MangaChapterAdapter
 import id.fadillah.pemulasubmission.utils.ImageHelper
 import id.fadillah.pemulasubmission.viewmodel.ViewModelFactory
