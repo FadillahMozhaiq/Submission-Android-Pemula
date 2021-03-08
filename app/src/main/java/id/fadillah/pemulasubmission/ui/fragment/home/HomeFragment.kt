@@ -105,11 +105,12 @@ class HomeFragment : Fragment() {
                     showRecyclerView(false)
                     viewModel.getAllManga().observe(viewLifecycleOwner, { manga ->
                         if (manga.isEmpty()) {
-                            showError(true, "Sorry, Server Error")
-                            Toast.makeText(context, "Sorry, Server Error", Toast.LENGTH_SHORT).show()
+                            showError(true, "Sorry, Server Error!")
+                            Toast.makeText(context, "Sorry, Server Error!", Toast.LENGTH_LONG).show()
                         }
                         else {
                             showError(false)
+                            showRecyclerView(true)
                             mangaAdapter.setData(manga)
                             mangaAdapter.notifyDataSetChanged()
                         }
@@ -122,10 +123,11 @@ class HomeFragment : Fragment() {
                     showRecyclerView(false)
                     viewModel.getAllManga().observe(viewLifecycleOwner, { manga ->
                         if (manga.isEmpty()) {
-                            showError(true, "Sorry, Server Error")
-                            Toast.makeText(context, "Sorry, Server Error", Toast.LENGTH_SHORT).show()
+                            showError(true, "Sorry, Server Error!")
+                            Toast.makeText(context, "Sorry, Server Error!", Toast.LENGTH_LONG).show()
                         }
                         else {
+                            showRecyclerView(true)
                             showError(false)
                             mangaAdapter.setData(manga)
                             mangaAdapter.notifyDataSetChanged()
