@@ -30,9 +30,6 @@ class MangaRepository private constructor(private val remoteDataSource: RemoteDa
                 mangaResult.postValue(listManga)
             }
         })
-        if (mangaResult.value.isNullOrEmpty()) {
-            mangaResult.value = emptyList()
-        }
         return mangaResult
     }
 
@@ -57,9 +54,6 @@ class MangaRepository private constructor(private val remoteDataSource: RemoteDa
                 mangaResult.postValue(listManga)
             }
         })
-        if (mangaResult.value.isNullOrEmpty()) {
-            mangaResult.value = emptyList()
-        }
         return mangaResult
     }
 
