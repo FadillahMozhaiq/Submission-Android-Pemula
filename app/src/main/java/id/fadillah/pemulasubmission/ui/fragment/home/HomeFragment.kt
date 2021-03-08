@@ -79,13 +79,25 @@ class HomeFragment : Fragment() {
             })
 
             binding?.swipeLayout?.setOnRefreshListener {
-                showRecyclerView(false)
-                viewModel.getAllManga().observe(viewLifecycleOwner, { manga ->
-                    showRecyclerView(true)
-                    mangaAdapter.setData(manga)
-                    mangaAdapter.notifyDataSetChanged()
-                    binding?.swipeLayout?.isRefreshing = false
-                })
+                if (binding?.edtSearch?.text?.isEmpty() == true) {
+                    showRecyclerView(false)
+                    viewModel.getAllManga().observe(viewLifecycleOwner, { manga ->
+                        showRecyclerView(true)
+                        mangaAdapter.setData(manga)
+                        mangaAdapter.notifyDataSetChanged()
+                        binding?.swipeLayout?.isRefreshing = false
+                    })
+                } else {
+                    val query = binding?.edtSearch?.text ?: " "
+                    showRecyclerView(false)
+                    viewModel.getQuestManga(query.toString()).observe(viewLifecycleOwner, { manga ->
+                        showEmptyLayout(false)
+                        showRecyclerView(true)
+                        mangaAdapter.setData(manga)
+                        mangaAdapter.notifyDataSetChanged()
+                    })
+                }
+
             }
 
             binding?.btnRefreshError?.setOnClickListener {
