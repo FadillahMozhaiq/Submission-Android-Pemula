@@ -3,6 +3,7 @@ package id.fadillah.pemulasubmission.ui.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import id.fadillah.pemulasubmission.R
 import id.fadillah.pemulasubmission.data.model.ChapterEntity
 import id.fadillah.pemulasubmission.databinding.ItemChapterImageBinding
 import id.fadillah.pemulasubmission.utils.ImageHelper
@@ -20,7 +21,7 @@ class ChapterViewAdapter : RecyclerView.Adapter<ChapterViewAdapter.ChapterViewHo
         RecyclerView.ViewHolder(itemChapterImageBinding.root) {
         fun bind(chapterEntity: ChapterEntity) {
             with(itemChapterImageBinding) {
-                ImageHelper.getImage(ivComic, chapterEntity.chapterImage)
+                ImageHelper.getImage(ivComic, chapterEntity.chapterImage, R.drawable.placeholder_loading)
             }
         }
     }

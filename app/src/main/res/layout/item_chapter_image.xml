@@ -9,6 +9,6 @@
         android:id="@+id/iv_comic"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:src="@drawable/bg_naruto" />
+        tools:src="@drawable/poster_android" />
 
 </LinearLayout>

@@ -48,8 +48,8 @@ class ChapterViewActivity : AppCompatActivity() {
         finish()
     }
 
-    override fun onNavigateUp(): Boolean {
+    override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
-        return super.onNavigateUp()
+        return super.onSupportNavigateUp()
     }
 }
