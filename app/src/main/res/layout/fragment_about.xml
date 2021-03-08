@@ -100,7 +100,8 @@
             android:src="@drawable/ic_baseline_person_add"
             android:background="@android:color/transparent"
             app:layout_constraintTop_toBottomOf="@+id/tv_email"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:ignore="ContentDescription"/>
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline_about"

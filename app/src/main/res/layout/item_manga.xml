@@ -13,6 +13,7 @@
         android:layout_height="220dp"
         android:visibility="visible"
         android:scaleType="centerCrop"
+        tools:ignore="ContentDescription"
         android:src="@drawable/ic_no_images" />
 
     <TextView

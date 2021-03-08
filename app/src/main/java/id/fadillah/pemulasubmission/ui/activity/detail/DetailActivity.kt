@@ -86,7 +86,7 @@ class DetailActivity : AppCompatActivity() {
                     fabContainer.startAnimation(rotateOpen)
 //                    fabContainer.setImageResource(R.drawable.ic_baseline_clear)
                 }
-                fabFlag = false;
+                fabFlag = false
             }else {
                 with(binding) {
                     fabShare.hide()
