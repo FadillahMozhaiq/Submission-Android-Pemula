@@ -1,5 +1,6 @@
 package id.fadillah.pemulasubmission.data
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import id.fadillah.pemulasubmission.data.model.ChapterEntity
@@ -29,6 +30,9 @@ class MangaRepository private constructor(private val remoteDataSource: RemoteDa
                 mangaResult.postValue(listManga)
             }
         })
+        if (mangaResult.value.isNullOrEmpty()) {
+            mangaResult.value = emptyList()
+        }
         return mangaResult
     }
 
@@ -53,6 +57,9 @@ class MangaRepository private constructor(private val remoteDataSource: RemoteDa
                 mangaResult.postValue(listManga)
             }
         })
+        if (mangaResult.value.isNullOrEmpty()) {
+            mangaResult.value = emptyList()
+        }
         return mangaResult
     }
 

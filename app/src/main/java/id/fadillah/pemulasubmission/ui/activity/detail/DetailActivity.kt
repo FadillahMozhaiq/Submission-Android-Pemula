@@ -3,9 +3,12 @@ package id.fadillah.pemulasubmission.ui.activity.detail
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.snackbar.Snackbar
 import id.fadillah.pemulasubmission.R
 import id.fadillah.pemulasubmission.data.model.MangaEntity
@@ -16,6 +19,7 @@ import id.fadillah.pemulasubmission.ui.activity.imagedetail.ImageViewActivity.Co
 import id.fadillah.pemulasubmission.ui.adapter.MangaChapterAdapter
 import id.fadillah.pemulasubmission.utils.ImageHelper
 import id.fadillah.pemulasubmission.viewmodel.ViewModelFactory
+import kotlin.math.abs
 
 class DetailActivity : AppCompatActivity() {
     companion object {
@@ -25,6 +29,8 @@ class DetailActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDetailBinding
     private var fabFlag: Boolean = true
+    private val rotateOpen: Animation by lazy { AnimationUtils.loadAnimation(this, R.anim.fab_anim_in) }
+    private val rotateClose: Animation by lazy { AnimationUtils.loadAnimation(this, R.anim.fab_anim_out ) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -77,7 +83,8 @@ class DetailActivity : AppCompatActivity() {
                     fabShare.show()
                     fabShare.animate().translationY((-(fabBookmark.size + fabContainer.size)).toFloat())
                     fabBookmark.animate().translationY((-(fabContainer.size)).toFloat())
-                    fabContainer.setImageResource(R.drawable.ic_baseline_clear)
+                    fabContainer.startAnimation(rotateOpen)
+//                    fabContainer.setImageResource(R.drawable.ic_baseline_clear)
                 }
                 fabFlag = false;
             }else {
@@ -86,6 +93,7 @@ class DetailActivity : AppCompatActivity() {
                     fabBookmark.hide()
                     fabShare.animate().translationY(0F)
                     fabBookmark.animate().translationY(0F)
+                    fabContainer.startAnimation(rotateClose)
                     fabContainer.setImageResource(R.drawable.ic_baseline_add)
                 }
                 fabFlag = true
@@ -100,7 +108,16 @@ class DetailActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-
+        binding.appbarDetail.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { appBarLayout, verticalOffset ->
+            if (abs(verticalOffset) - appBarLayout.totalScrollRange == 0) {
+                //  Collapsed
+                binding.fabContainer.visibility = View.GONE
+            }
+            else {
+                //Expanded
+                binding.fabContainer.visibility = View.VISIBLE
+            }
+        })
     }
 
     private fun startLayoutShimmer(start: Boolean) {

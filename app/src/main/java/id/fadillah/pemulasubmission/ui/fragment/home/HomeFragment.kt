@@ -7,11 +7,13 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import id.fadillah.pemulasubmission.databinding.FragmentHomeBinding
 import id.fadillah.pemulasubmission.ui.adapter.MangaAdapter
+import id.fadillah.pemulasubmission.utils.ConnectionHelper.isOnline
 import id.fadillah.pemulasubmission.viewmodel.ViewModelFactory
 
 /**
@@ -40,50 +42,112 @@ class HomeFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         if (activity != null) {
+            showError(false)
             val factory = ViewModelFactory.getInstance()
             viewModel = ViewModelProvider(this, factory)[HomeViewModel::class.java]
 
-            showRecyclerView(false)
-            viewModel.getAllManga().observe(viewLifecycleOwner, {manga ->
-                showRecyclerView(true)
-                mangaAdapter.setData(manga)
-                mangaAdapter.notifyDataSetChanged()
-            })
+            if (isOnline(requireContext())) {
 
-            binding?.edtSearch?.addTextChangedListener(object : TextWatcher {
-                override fun beforeTextChanged(
-                    s: CharSequence?,
-                    start: Int,
-                    count: Int,
-                    after: Int
-                ) { }
-                override fun afterTextChanged(s: Editable?) { }
+                showRecyclerView(false)
+                viewModel.getAllManga().observe(viewLifecycleOwner, { manga ->
+                    if (manga.isEmpty())
+                        showError(true, "Sorry, Server Error!")
+                    else {
+                        showRecyclerView(true)
+                        mangaAdapter.setData(manga)
+                        mangaAdapter.notifyDataSetChanged()
+                    }
+                })
 
-                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                binding?.edtSearch?.addTextChangedListener(object : TextWatcher {
+                    override fun beforeTextChanged(
+                        s: CharSequence?,
+                        start: Int,
+                        count: Int,
+                        after: Int
+                    ) {
+                    }
+
+                    override fun afterTextChanged(s: Editable?) {}
+
+                    override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                        showRecyclerView(false)
+                        viewModel.getQuestManga(s.toString()).observe(viewLifecycleOwner, { manga ->
+                            if (manga.isNotEmpty()) {
+                                showEmptyLayout(false)
+                                showRecyclerView(true)
+                                mangaAdapter.setData(manga)
+                                mangaAdapter.notifyDataSetChanged()
+                            } else {
+                                showRecyclerView(true)
+                                showEmptyLayout(true)
+                            }
+                        })
+                    }
+                })
+
+                binding?.swipeLayout?.setOnRefreshListener {
                     showRecyclerView(false)
-                    viewModel.getQuestManga(s.toString()).observe(viewLifecycleOwner, {manga ->
-                        if (manga.isNotEmpty()) {
-                            showEmptyLayout(false)
+                    viewModel.getAllManga().observe(viewLifecycleOwner, { manga ->
+                        if (manga.isEmpty())
+                            showError(true, "Sorry, Server Error!")
+                        else {
                             showRecyclerView(true)
                             mangaAdapter.setData(manga)
                             mangaAdapter.notifyDataSetChanged()
-                        } else {
-                            showRecyclerView(true)
-                            showEmptyLayout(true)
+                        }
+                        binding?.swipeLayout?.isRefreshing = false
+                    })
+                }
+
+                binding?.btnRefreshError?.setOnClickListener {
+                    Log.e("BTN", "pressed")
+                    showRecyclerView(false)
+                    viewModel.getAllManga().observe(viewLifecycleOwner, { manga ->
+                        if (manga.isEmpty()) {
+                            showError(true, "Sorry, Server Error")
+                            Toast.makeText(context, "Sorry, Server Error", Toast.LENGTH_SHORT).show()
+                        }
+                        else {
+                            showError(false)
+                            mangaAdapter.setData(manga)
+                            mangaAdapter.notifyDataSetChanged()
                         }
                     })
                 }
-            })
-
-            binding?.swipeLayout?.setOnRefreshListener {
-                showRecyclerView(false)
-                viewModel.getAllManga().observe(viewLifecycleOwner, {manga ->
-                    mangaAdapter.setData(manga)
-                    mangaAdapter.notifyDataSetChanged()
-                    showRecyclerView(true)
-                    binding?.swipeLayout?.isRefreshing = false
-                })
+            } else {
+                showError(true)
+                binding?.btnRefreshError?.setOnClickListener {
+                    Log.e("BTN", "pressed")
+                    showRecyclerView(false)
+                    viewModel.getAllManga().observe(viewLifecycleOwner, { manga ->
+                        if (manga.isEmpty()) {
+                            showError(true, "Sorry, Server Error")
+                            Toast.makeText(context, "Sorry, Server Error", Toast.LENGTH_SHORT).show()
+                        }
+                        else {
+                            showError(false)
+                            mangaAdapter.setData(manga)
+                            mangaAdapter.notifyDataSetChanged()
+                        }
+                    })
+                }
             }
+        }
+    }
+
+    private fun showError(show: Boolean, message: String = "No Internet Connection!") {
+        if (!show) {
+            binding?.layoutShimmer?.visibility = View.VISIBLE
+            binding?.rvHome?.visibility = View.VISIBLE
+            binding?.tvCollection?.visibility = View.VISIBLE
+            binding?.layoutErrorLoadData?.visibility = View.GONE
+        } else {
+            binding?.layoutShimmer?.visibility = View.GONE
+            binding?.rvHome?.visibility = View.GONE
+            binding?.tvCollection?.visibility = View.GONE
+            binding?.layoutErrorLoadData?.visibility = View.VISIBLE
+            binding?.tvErrorMessage?.text = message
         }
     }
 

@@ -24,4 +24,6 @@
     <string name="chapter">Chapter</string>
     <string name="its_empty">Sorry, it\'s empty</string>
     <string name="our_manga_collection">Our Manga Collection</string>
+    <string name="error_load_data_message">I\'m Sorry Server is Error Right Now</string>
+    <string name="refresh">Refresh</string>
 </resources>
