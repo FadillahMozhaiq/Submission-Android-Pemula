@@ -1,6 +1,7 @@
 package id.fadillah.pemulasubmission.data.model
 
 import android.os.Parcelable
+import kotlinx.parcelize.IgnoredOnParcel
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
@@ -14,5 +15,6 @@ data class MangaEntity (
     val genreList: String? = null,
     val synopsis: String? = null,
 ): Parcelable {
+    @IgnoredOnParcel
     var listChapterEntity: List<MangaChapterEntity>? = null
 }
