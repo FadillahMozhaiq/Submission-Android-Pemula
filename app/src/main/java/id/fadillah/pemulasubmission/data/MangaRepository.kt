@@ -1,6 +1,5 @@
 package id.fadillah.pemulasubmission.data
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import id.fadillah.pemulasubmission.data.model.ChapterEntity
