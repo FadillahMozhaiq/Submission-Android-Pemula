@@ -12,6 +12,9 @@ import id.fadillah.pemulasubmission.data.source.network.reponse.ChapterResponse
 import id.fadillah.pemulasubmission.data.source.network.reponse.MangaDetailResponse
 import id.fadillah.pemulasubmission.data.source.network.reponse.MangaListItem
 import id.fadillah.pemulasubmission.utils.ConverterHelper
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class MangaRepository private constructor(
     private val remoteDataSource: RemoteDataSource,
@@ -105,15 +108,27 @@ class MangaRepository private constructor(
         return listManga
     }
 
+    override fun isBookmarked(endpoint: String): LiveData<Boolean> {
+        val result = MutableLiveData<Boolean>()
+        CoroutineScope(Dispatchers.IO).launch {
+            val data = localDataSource.isBookmarked(endpoint).value
+            result.postValue(data != 0)
+        }
+        return result
+    }
+
     override fun insertBookmarkManga(mangaEntity: MangaEntity) {
-        TODO("Not yet implemented")
+        val data = ConverterHelper.mangaEntityToMangaBookmarkEntity(mangaEntity)
+        localDataSource.insertBookmarkedManga(data)
     }
 
     override fun updateBookmarkManga(mangaEntity: MangaEntity) {
-        TODO("Not yet implemented")
+        val data = ConverterHelper.mangaEntityToMangaBookmarkEntity(mangaEntity)
+        localDataSource.updateBookmarkedManga(data)
     }
 
     override fun deleteBookmarkManga(mangaEntity: MangaEntity) {
-        TODO("Not yet implemented")
+        val data = ConverterHelper.mangaEntityToMangaBookmarkEntity(mangaEntity)
+        localDataSource.deleteBookmarkedManga(data)
     }
 }

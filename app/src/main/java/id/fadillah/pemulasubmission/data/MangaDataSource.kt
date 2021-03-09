@@ -14,4 +14,5 @@ interface MangaDataSource {
     fun insertBookmarkManga(mangaEntity: MangaEntity)
     fun deleteBookmarkManga(mangaEntity: MangaEntity)
     fun updateBookmarkManga(mangaEntity: MangaEntity)
+    fun isBookmarked(endpoint: String): LiveData<Boolean>
 }

@@ -48,7 +48,7 @@ object ConverterHelper {
         return chapterResult
     }
 
-    fun listRecommendedEntityToMangaEntity(data: List<MangaRecommendedEntity>?): List<MangaEntity>{
+    fun listRecommendedEntityToMangaEntity(data: List<MangaRecommendedEntity>?): List<MangaEntity> {
         val recommendedManga = ArrayList<MangaEntity>()
 
         data?.map {
@@ -56,4 +56,7 @@ object ConverterHelper {
         }
         return recommendedManga
     }
+
+    fun mangaEntityToMangaBookmarkEntity(data: MangaEntity, bookmarked: Boolean = true): MangaBookmarkEntity =
+        MangaBookmarkEntity(data.endpoint, data.title, data.thumbnail, bookmarked)
 }

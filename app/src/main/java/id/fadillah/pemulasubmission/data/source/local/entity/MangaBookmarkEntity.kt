@@ -9,14 +9,11 @@ import androidx.room.PrimaryKey
 data class MangaBookmarkEntity(
     @PrimaryKey
     @NonNull
-    @ColumnInfo(name = "id")
-    var id: Int,
+    @ColumnInfo(name = "endpoint")
+    var endpoint: String,
 
     @ColumnInfo(name = "title")
     var title: String,
-
-    @ColumnInfo(name = "endpoint")
-    var endpoint: String,
 
     @ColumnInfo(name = "thumbnail")
     var thumbnail: String,

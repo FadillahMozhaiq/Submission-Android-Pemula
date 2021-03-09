@@ -6,8 +6,11 @@ import id.fadillah.pemulasubmission.data.source.local.entity.MangaBookmarkEntity
 
 @Dao
 interface MangaDao {
-    @Query("SELECT * FROM mangabookmarks WHERE bookmarked = 1")
+    @Query("SELECT * FROM mangabookmarks")
     fun getAllBookmarkManga(): LiveData<List<MangaBookmarkEntity>>
+
+    @Query("SELECT * FROM mangabookmarks WHERE endpoint = :endpoint")
+    fun checkIsBookmarked(endpoint: String): LiveData<Int>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertManga(manga: MangaBookmarkEntity)

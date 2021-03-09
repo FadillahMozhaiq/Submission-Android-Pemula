@@ -34,6 +34,8 @@ class LocalDataSource private constructor(private val mMangaDao: MangaDao, priva
 
     fun deleteBookmarkedManga(manga: MangaBookmarkEntity) = mMangaDao.deleteManga(manga)
 
+    fun isBookmarked(endpoint: String): LiveData<Int> = mMangaDao.checkIsBookmarked(endpoint)
+
     interface LoadRecommendedMangaCallback {
         fun onAllMangaReceived(data: List<MangaRecommendedEntity>)
     }
