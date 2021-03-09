@@ -3,6 +3,8 @@ package id.fadillah.pemulasubmission.utils
 import id.fadillah.pemulasubmission.data.model.ChapterEntity
 import id.fadillah.pemulasubmission.data.model.MangaChapterEntity
 import id.fadillah.pemulasubmission.data.model.MangaEntity
+import id.fadillah.pemulasubmission.data.source.local.entity.MangaBookmarkEntity
+import id.fadillah.pemulasubmission.data.source.local.entity.MangaRecommendedEntity
 import id.fadillah.pemulasubmission.data.source.network.reponse.ChapterImageItem
 import id.fadillah.pemulasubmission.data.source.network.reponse.MangaDetailResponse
 import id.fadillah.pemulasubmission.data.source.network.reponse.MangaListItem
@@ -10,12 +12,10 @@ import id.fadillah.pemulasubmission.data.source.network.reponse.MangaListItem
 object ConverterHelper {
     fun responsesToListEntity(responses: List<MangaListItem>?): List<MangaEntity> {
         val mangaResult = ArrayList<MangaEntity>()
-        responses?.let {
-            for (item in it) {
-                mangaResult.add(
-                    MangaEntity(item.title, item.endpoint, item.thumb)
-                )
-            }
+        responses?.map {
+            mangaResult.add(
+                MangaEntity(it.title, it.endpoint, it.thumb)
+            )
         }
         return mangaResult
     }
@@ -33,20 +33,27 @@ object ConverterHelper {
             genreList.joinToString(),
             response.synopsis
         )
-        mangaEntity.listChapterEntity = response.chapter.map { MangaChapterEntity(it.chapterTitle, it.chapterEndpoint) }
+        mangaEntity.listChapterEntity =
+            response.chapter.map { MangaChapterEntity(it.chapterTitle, it.chapterEndpoint) }
         return mangaEntity
     }
 
     fun chapterResponseToChapterEntity(responses: List<ChapterImageItem>?): List<ChapterEntity> {
         val chapterResult = ArrayList<ChapterEntity>()
-        responses?.let {
-            for (item in it) {
-                chapterResult.add(
-                    ChapterEntity(item.chapterImageLink, item.imageNumber)
-                )
-            }
+        responses?.map {
+            chapterResult.add(
+                ChapterEntity(it.chapterImageLink, it.imageNumber)
+            )
         }
         return chapterResult
     }
 
+    fun listRecommendedEntityToMangaEntity(data: List<MangaRecommendedEntity>?): List<MangaEntity>{
+        val recommendedManga = ArrayList<MangaEntity>()
+
+        data?.map {
+            recommendedManga.add(MangaEntity(it.title, it.endpoint, it.thumbnail))
+        }
+        return recommendedManga
+    }
 }
