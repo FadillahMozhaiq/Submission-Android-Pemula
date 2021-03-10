@@ -4,7 +4,6 @@ import android.content.Context
 import id.fadillah.pemulasubmission.data.MangaRepository
 import id.fadillah.pemulasubmission.data.source.local.LocalDataSource
 import id.fadillah.pemulasubmission.data.source.local.room.MangaDatabase
-import id.fadillah.pemulasubmission.data.source.local.room.MangaDatabase_Impl
 import id.fadillah.pemulasubmission.data.source.network.RemoteDataSource
 import id.fadillah.pemulasubmission.utils.JsonHelper
 

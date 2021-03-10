@@ -24,7 +24,7 @@ class ChapterViewActivity : AppCompatActivity() {
 
         val chapterAdapter = ChapterViewAdapter()
         val endpoint = intent.getParcelableExtra<ChapterEntity>(EXTRA_CHAPTER_URL)
-        val factory = ViewModelFactory.getInstance()
+        val factory = ViewModelFactory.getInstance(this)
         val viewModel = ViewModelProvider(this, factory)[ChapterViewModel::class.java]
 
         supportActionBar?.title = endpoint?.chapterTitle

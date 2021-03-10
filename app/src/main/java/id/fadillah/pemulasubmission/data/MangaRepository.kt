@@ -1,5 +1,6 @@
 package id.fadillah.pemulasubmission.data
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import id.fadillah.pemulasubmission.data.model.ChapterEntity
@@ -83,52 +84,47 @@ class MangaRepository private constructor(
 
     override fun getRecommendedManga(): LiveData<List<MangaEntity>> {
         val listData = MutableLiveData<List<MangaEntity>>()
-        localDataSource.getAllRecommended(object : LocalDataSource.LoadRecommendedMangaCallback {
-            override fun onAllMangaReceived(data: List<MangaRecommendedEntity>) {
-                val listManga = ConverterHelper.listRecommendedEntityToMangaEntity(data)
-                listData.postValue(listManga)
-            }
-        })
+        CoroutineScope(Dispatchers.Default).launch {
+            localDataSource.getAllRecommended(object : LocalDataSource.LoadRecommendedMangaCallback {
+                override fun onAllMangaReceived(data: List<MangaRecommendedEntity>) {
+                    val listManga = ConverterHelper.listRecommendedEntityToMangaEntity(data)
+                    listData.postValue(listManga)
+                }
+            })
+        }
         return listData
     }
 
-    override fun getBookmarkedManga(): LiveData<List<MangaEntity>> {
-        val listManga = MutableLiveData<List<MangaEntity>>()
-
-        localDataSource.getAllBookmarked(object : LocalDataSource.LoadBookmarkedMangaCallback {
-            override fun onAllMangaReceived(data: LiveData<List<MangaBookmarkEntity>>) {
-                data.value?.let { list ->
-                    val listMangaEntity = list.map {
-                        MangaEntity(it.title, it.endpoint, it.thumbnail)
-                    }
-                    listManga.postValue(listMangaEntity)
-                }
-            }
-        })
-        return listManga
-    }
+    override fun getBookmarkedManga(): LiveData<List<MangaBookmarkEntity>> = localDataSource.getAllBookmarked()
 
     override fun isBookmarked(endpoint: String): LiveData<Boolean> {
         val result = MutableLiveData<Boolean>()
         CoroutineScope(Dispatchers.IO).launch {
-            val data = localDataSource.isBookmarked(endpoint).value
-            result.postValue(data != 0)
+            val item = localDataSource.isBookmarked(endpoint).value
+            val data = item == 1
+            result.postValue(data)
         }
         return result
     }
 
     override fun insertBookmarkManga(mangaEntity: MangaEntity) {
-        val data = ConverterHelper.mangaEntityToMangaBookmarkEntity(mangaEntity)
-        localDataSource.insertBookmarkedManga(data)
+        CoroutineScope(Dispatchers.IO).launch {
+            val data = ConverterHelper.mangaEntityToMangaBookmarkEntity(mangaEntity)
+            localDataSource.insertBookmarkedManga(data)
+        }
     }
 
-    override fun updateBookmarkManga(mangaEntity: MangaEntity) {
-        val data = ConverterHelper.mangaEntityToMangaBookmarkEntity(mangaEntity)
-        localDataSource.updateBookmarkedManga(data)
+    override fun updateBookmarkManga(mangaEntity: MangaEntity, newState: Boolean) {
+        CoroutineScope(Dispatchers.IO).launch {
+            val data = ConverterHelper.mangaEntityToMangaBookmarkEntity(mangaEntity)
+            localDataSource.updateBookmarkedManga(data)
+        }
     }
 
     override fun deleteBookmarkManga(mangaEntity: MangaEntity) {
-        val data = ConverterHelper.mangaEntityToMangaBookmarkEntity(mangaEntity)
-        localDataSource.deleteBookmarkedManga(data)
+        CoroutineScope(Dispatchers.IO).launch {
+            val data = ConverterHelper.mangaEntityToMangaBookmarkEntity(mangaEntity)
+            localDataSource.deleteBookmarkedManga(data)
+        }
     }
 }

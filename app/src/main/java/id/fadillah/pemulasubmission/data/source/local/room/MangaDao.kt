@@ -9,7 +9,7 @@ interface MangaDao {
     @Query("SELECT * FROM mangabookmarks")
     fun getAllBookmarkManga(): LiveData<List<MangaBookmarkEntity>>
 
-    @Query("SELECT * FROM mangabookmarks WHERE endpoint = :endpoint")
+    @Query("SELECT bookmarked FROM mangabookmarks WHERE endpoint = :endpoint")
     fun checkIsBookmarked(endpoint: String): LiveData<Int>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

@@ -2,6 +2,7 @@ package id.fadillah.pemulasubmission.ui.activity.detail
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
@@ -29,8 +30,19 @@ class DetailActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDetailBinding
     private var fabFlag: Boolean = true
-    private val rotateOpen: Animation by lazy { AnimationUtils.loadAnimation(this, R.anim.fab_anim_in) }
-    private val rotateClose: Animation by lazy { AnimationUtils.loadAnimation(this, R.anim.fab_anim_out ) }
+    private var fabBookmarkFlag: Boolean = false
+    private val rotateOpen: Animation by lazy {
+        AnimationUtils.loadAnimation(
+            this,
+            R.anim.fab_anim_in
+        )
+    }
+    private val rotateClose: Animation by lazy {
+        AnimationUtils.loadAnimation(
+            this,
+            R.anim.fab_anim_out
+        )
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,7 +53,7 @@ class DetailActivity : AppCompatActivity() {
 
         val bundle = intent.getBundleExtra(EXTRA_BUNDLE) ?: Bundle.EMPTY
         val data = bundle.getParcelable(EXTRA_DATA) ?: MangaEntity("Unknown", " ", " ")
-        val factory = ViewModelFactory.getInstance()
+        val factory = ViewModelFactory.getInstance(this)
         val viewModel = ViewModelProvider(this, factory)[DetailViewModel::class.java]
         val adapter = MangaChapterAdapter()
 
@@ -55,11 +67,17 @@ class DetailActivity : AppCompatActivity() {
             setHasFixedSize(true)
             setItemViewCacheSize(20)
         }
+        viewModel.isMangaBookmarked(data.endpoint).observe(this, {
+            it?.let {
+                fabBookmarkFlag = it
+                if (it)
+                    binding.fabBookmark.setImageResource(R.drawable.ic_baseline_bookmark)
+                else
+                    binding.fabBookmark.setImageResource(R.drawable.ic_baseline_bookmark_border) }
+        })
         binding.collapsingToolbar.title = data.title
         ImageHelper.getImage(binding.ivDetail, data.thumbnail)
         viewModel.getDetailManga(data.endpoint).observe(this, { manga ->
-            adapter.setChapter(manga.listChapterEntity)
-            adapter.notifyDataSetChanged()
             with(binding.content) {
                 tvType.text = manga.type
                 tvAuthor.text = manga.author
@@ -68,12 +86,26 @@ class DetailActivity : AppCompatActivity() {
                 tvSynopsis.text = manga.synopsis
             }
             startLayoutShimmer(false)
+            adapter.setChapter(manga.listChapterEntity)
+            adapter.notifyDataSetChanged()
         })
 
 //        OnClickListener View
         binding.fabBookmark.setOnClickListener { view ->
-            Snackbar.make(view, "Not implemented yet!", Snackbar.LENGTH_LONG)
-                .setAction("Action") { TODO("Not yet implemented") }.show()
+//            is bookmarked
+            if (fabBookmarkFlag) {
+                viewModel.removeBookmark(data)
+                Snackbar.make(view, "Deleted from Bookmark!", Snackbar.LENGTH_LONG)
+                    .setAction("UNDO") {
+                        viewModel.addToBookmark(data)
+                    }.show()
+            } else {
+                viewModel.addToBookmark(data)
+                Snackbar.make(view, "Saved to Bookmarked!", Snackbar.LENGTH_LONG)
+                    .setAction("UNDO") {
+                        viewModel.removeBookmark(data)
+                    }.show()
+            }
         }
 
         binding.fabContainer.setOnClickListener {
@@ -81,13 +113,14 @@ class DetailActivity : AppCompatActivity() {
                 with(binding) {
                     fabBookmark.show()
                     fabShare.show()
-                    fabShare.animate().translationY((-(fabBookmark.size + fabContainer.size)).toFloat())
+                    fabShare.animate()
+                        .translationY((-(fabBookmark.size + fabContainer.size)).toFloat())
                     fabBookmark.animate().translationY((-(fabContainer.size)).toFloat())
                     fabContainer.startAnimation(rotateOpen)
 //                    fabContainer.setImageResource(R.drawable.ic_baseline_clear)
                 }
                 fabFlag = false
-            }else {
+            } else {
                 with(binding) {
                     fabShare.hide()
                     fabBookmark.hide()
@@ -112,8 +145,7 @@ class DetailActivity : AppCompatActivity() {
             if (abs(verticalOffset) - appBarLayout.totalScrollRange == 0) {
                 //  Collapsed
                 binding.fabContainer.visibility = View.GONE
-            }
-            else {
+            } else {
                 //Expanded
                 binding.fabContainer.visibility = View.VISIBLE
             }

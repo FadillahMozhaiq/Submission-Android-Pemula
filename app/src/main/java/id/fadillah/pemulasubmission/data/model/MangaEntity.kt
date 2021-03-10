@@ -14,6 +14,7 @@ data class MangaEntity (
     val status: String? = null,
     val genreList: String? = null,
     val synopsis: String? = null,
+    val bookmarked: Boolean = false
 ): Parcelable {
     @IgnoredOnParcel
     var listChapterEntity: List<MangaChapterEntity>? = null

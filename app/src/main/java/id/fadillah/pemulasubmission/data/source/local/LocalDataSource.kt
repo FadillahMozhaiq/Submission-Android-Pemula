@@ -23,10 +23,7 @@ class LocalDataSource private constructor(private val mMangaDao: MangaDao, priva
         }, 2000L)
     }
 
-    fun getAllBookmarked(callback: LoadBookmarkedMangaCallback) {
-        val data = mMangaDao.getAllBookmarkManga()
-        callback.onAllMangaReceived(data)
-    }
+    fun getAllBookmarked(): LiveData<List<MangaBookmarkEntity>>  = mMangaDao.getAllBookmarkManga()
 
     fun insertBookmarkedManga(manga: MangaBookmarkEntity) = mMangaDao.insertManga(manga)
 
