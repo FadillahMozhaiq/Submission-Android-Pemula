@@ -1,16 +1,11 @@
 package id.fadillah.pemulasubmission.data.source.network
 
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import id.fadillah.pemulasubmission.data.source.network.ApiConfig.Companion.getApiService
 import id.fadillah.pemulasubmission.data.source.network.reponse.ChapterResponse
 import id.fadillah.pemulasubmission.data.source.network.reponse.MangaDetailResponse
 import id.fadillah.pemulasubmission.data.source.network.reponse.MangaListItem
 import id.fadillah.pemulasubmission.data.source.network.reponse.MangaResponses
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

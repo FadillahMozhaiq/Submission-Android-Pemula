@@ -8,8 +8,7 @@ import id.fadillah.pemulasubmission.data.source.local.entity.MangaBookmarkEntity
 
 @Database(
     entities = [MangaBookmarkEntity::class],
-    version = 1,
-    exportSchema = false
+    version = 1
 )
 abstract class MangaDatabase: RoomDatabase() {
     abstract fun mangaDao(): MangaDao

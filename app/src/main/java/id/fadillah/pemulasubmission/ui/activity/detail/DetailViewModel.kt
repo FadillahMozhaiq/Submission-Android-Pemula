@@ -7,7 +7,7 @@ import id.fadillah.pemulasubmission.data.model.MangaEntity
 
 class DetailViewModel(private val mangaRepository: MangaRepository): ViewModel() {
     fun getDetailManga(endpoint: String): LiveData<MangaEntity> = mangaRepository.getDetailManga(endpoint)
-    fun isMangaBookmarked(endpoint: String):LiveData<Boolean> = mangaRepository.isBookmarked(endpoint)
+    fun isMangaBookmarked(endpoint: String):LiveData<Int> = mangaRepository.isBookmarked(endpoint)
     fun addToBookmark(mangaEntity: MangaEntity) = mangaRepository.insertBookmarkManga(mangaEntity)
     fun removeBookmark(mangaEntity: MangaEntity) = mangaRepository.deleteBookmarkManga(mangaEntity)
     fun setBookmark(mangaEntity: MangaEntity) {

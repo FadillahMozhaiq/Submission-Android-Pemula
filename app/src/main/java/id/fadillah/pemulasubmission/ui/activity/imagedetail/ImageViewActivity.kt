@@ -1,7 +1,7 @@
 package id.fadillah.pemulasubmission.ui.activity.imagedetail
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import id.fadillah.pemulasubmission.R
 import id.fadillah.pemulasubmission.databinding.ActivityImageViewBinding
 import id.fadillah.pemulasubmission.utils.ImageHelper

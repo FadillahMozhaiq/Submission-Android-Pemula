@@ -67,6 +67,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"   
         android:layout_margin="@dimen/fab_margin"
+        android:backgroundTint="@color/purple_200"
         app:srcCompat="@drawable/ic_baseline_add"
         tools:ignore="contentDescription"
         android:elevation="6dp"/>
@@ -78,7 +79,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
         android:layout_marginBottom="82dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="25dp"
+        app:fabSize="mini"
         app:elevation="6dp"
         app:srcCompat="@drawable/ic_baseline_bookmark_border"
         tools:ignore="contentDescription" />
@@ -89,8 +91,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
-        android:layout_marginBottom="146dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="130dp"
+        android:layout_marginEnd="25dp"
+        app:fabSize="mini"
         app:srcCompat="@drawable/ic_baseline_share"
         tools:ignore="contentDescription" />
 

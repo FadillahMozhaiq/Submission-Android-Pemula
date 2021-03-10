@@ -26,4 +26,5 @@
     <string name="our_manga_collection">Our Manga Collection</string>
     <string name="error_load_data_message">I\'m Sorry Server is Error Right Now</string>
     <string name="refresh">Refresh</string>
+    <string name="your_favorite_manga">Your Favorite Manga</string>
 </resources>

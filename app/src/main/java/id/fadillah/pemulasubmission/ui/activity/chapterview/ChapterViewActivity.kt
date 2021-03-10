@@ -1,11 +1,10 @@
 package id.fadillah.pemulasubmission.ui.activity.chapterview
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import id.fadillah.pemulasubmission.R
 import id.fadillah.pemulasubmission.data.model.ChapterEntity
 import id.fadillah.pemulasubmission.databinding.ActivityChapterViewBinding
 import id.fadillah.pemulasubmission.ui.adapter.ChapterViewAdapter

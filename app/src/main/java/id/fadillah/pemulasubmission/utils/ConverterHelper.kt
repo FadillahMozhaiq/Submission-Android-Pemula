@@ -58,5 +58,5 @@ object ConverterHelper {
     }
 
     fun mangaEntityToMangaBookmarkEntity(data: MangaEntity, bookmarked: Boolean = true): MangaBookmarkEntity =
-        MangaBookmarkEntity(data.endpoint, data.title, data.thumbnail, bookmarked)
+        MangaBookmarkEntity(endpoint = data.endpoint, title =  data.title, thumbnail =  data.thumbnail, bookmarked =  bookmarked)
 }

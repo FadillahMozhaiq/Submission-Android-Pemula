@@ -1,7 +1,6 @@
 package id.fadillah.pemulasubmission.ui.fragment.favorite
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -48,23 +47,42 @@ class FavoriteFragment : Fragment() {
                     val data = manga.map {
                         MangaEntity(it.title, it.endpoint, it.thumbnail, bookmarked =  it.bookmarked)
                     }
+                    if (data.isNotEmpty()) {
+                        showRecyclerView(true)
+                        mangaAdapter.setData(data)
+                        mangaAdapter.notifyDataSetChanged()
+                    }
+                }
+            })
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        showRecyclerView(false)
+        viewModel.getAllFavoriteManga().observe(viewLifecycleOwner, { manga ->
+            if (manga != null) {
+                val data = manga.map {
+                    MangaEntity(it.title, it.endpoint, it.thumbnail, bookmarked =  it.bookmarked)
+                }
+                if (data.isNotEmpty()) {
                     showRecyclerView(true)
                     mangaAdapter.setData(data)
                     mangaAdapter.notifyDataSetChanged()
                 }
-            })
-        } else {
-            Log.e("DATAFILE", "manga.toString()")
-        }
+            }
+        })
     }
 
     private fun showRecyclerView(show: Boolean) {
         if (show) {
             binding?.layoutNothing?.visibility = View.GONE
             binding?.rvFav?.visibility = View.VISIBLE
+            binding?.tvCollection?.visibility = View.VISIBLE
         } else {
             binding?.layoutNothing?.visibility = View.VISIBLE
             binding?.rvFav?.visibility = View.GONE
+            binding?.tvCollection?.visibility = View.GONE
         }
     }
 }

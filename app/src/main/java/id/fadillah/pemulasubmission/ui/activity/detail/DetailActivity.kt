@@ -6,7 +6,9 @@ import android.util.Log
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import android.widget.ShareActionProvider
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.MenuItemCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.appbar.AppBarLayout
@@ -22,6 +24,7 @@ import id.fadillah.pemulasubmission.utils.ImageHelper
 import id.fadillah.pemulasubmission.viewmodel.ViewModelFactory
 import kotlin.math.abs
 
+
 class DetailActivity : AppCompatActivity() {
     companion object {
         const val EXTRA_DATA = "extra_data"
@@ -29,6 +32,8 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private lateinit var binding: ActivityDetailBinding
+    private lateinit var viewModel: DetailViewModel
+    private lateinit var data: MangaEntity
     private var fabFlag: Boolean = true
     private var fabBookmarkFlag: Boolean = false
     private val rotateOpen: Animation by lazy {
@@ -52,9 +57,9 @@ class DetailActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         val bundle = intent.getBundleExtra(EXTRA_BUNDLE) ?: Bundle.EMPTY
-        val data = bundle.getParcelable(EXTRA_DATA) ?: MangaEntity("Unknown", " ", " ")
+        data = bundle.getParcelable(EXTRA_DATA) ?: MangaEntity("Unknown", " ", " ")
         val factory = ViewModelFactory.getInstance(this)
-        val viewModel = ViewModelProvider(this, factory)[DetailViewModel::class.java]
+        viewModel = ViewModelProvider(this, factory)[DetailViewModel::class.java]
         val adapter = MangaChapterAdapter()
 
 //        Inisialisasi View
@@ -69,11 +74,13 @@ class DetailActivity : AppCompatActivity() {
         }
         viewModel.isMangaBookmarked(data.endpoint).observe(this, {
             it?.let {
-                fabBookmarkFlag = it
-                if (it)
+                fabBookmarkFlag = it > 0
+                Log.d("HAPUS", fabBookmarkFlag.toString())
+                if (fabBookmarkFlag)
                     binding.fabBookmark.setImageResource(R.drawable.ic_baseline_bookmark)
                 else
-                    binding.fabBookmark.setImageResource(R.drawable.ic_baseline_bookmark_border) }
+                    binding.fabBookmark.setImageResource(R.drawable.ic_baseline_bookmark_border)
+            }
         })
         binding.collapsingToolbar.title = data.title
         ImageHelper.getImage(binding.ivDetail, data.thumbnail)
@@ -98,14 +105,32 @@ class DetailActivity : AppCompatActivity() {
                 Snackbar.make(view, "Deleted from Bookmark!", Snackbar.LENGTH_LONG)
                     .setAction("UNDO") {
                         viewModel.addToBookmark(data)
+                        fabBookmarkFlag = true
+                        binding.fabBookmark.setImageResource(R.drawable.ic_baseline_bookmark)
                     }.show()
+                binding.fabBookmark.setImageResource(R.drawable.ic_baseline_bookmark_border)
+                fabBookmarkFlag = false
             } else {
                 viewModel.addToBookmark(data)
                 Snackbar.make(view, "Saved to Bookmarked!", Snackbar.LENGTH_LONG)
                     .setAction("UNDO") {
                         viewModel.removeBookmark(data)
+                        fabBookmarkFlag = false
+                        binding.fabBookmark.setImageResource(R.drawable.ic_baseline_bookmark_border)
                     }.show()
+                binding.fabBookmark.setImageResource(R.drawable.ic_baseline_bookmark)
+                fabBookmarkFlag = true
             }
+        }
+
+        binding.fabShare.setOnClickListener {
+            val intent = Intent(Intent.ACTION_SEND).apply {
+                type = "text/plain"
+                putExtra(
+                    Intent.EXTRA_TEXT, "Baca manga ${this@DetailActivity.data.title} sekarang!"
+                )
+            }
+            startActivity(Intent.createChooser(intent, "Bagikan Manga Ini Sekarang!"))
         }
 
         binding.fabContainer.setOnClickListener {
@@ -117,7 +142,6 @@ class DetailActivity : AppCompatActivity() {
                         .translationY((-(fabBookmark.size + fabContainer.size)).toFloat())
                     fabBookmark.animate().translationY((-(fabContainer.size)).toFloat())
                     fabContainer.startAnimation(rotateOpen)
-//                    fabContainer.setImageResource(R.drawable.ic_baseline_clear)
                 }
                 fabFlag = false
             } else {
@@ -135,8 +159,8 @@ class DetailActivity : AppCompatActivity() {
 
         binding.ivDetail.setOnClickListener {
             val intent = Intent(this, ImageViewActivity::class.java).apply {
-                putExtra(EXTRA_DETAIL_IMAGE, data.thumbnail)
-                putExtra(EXTRA_DETAIL_IMAGE_TITLE, data.title)
+                putExtra(EXTRA_DETAIL_IMAGE, this@DetailActivity.data.thumbnail)
+                putExtra(EXTRA_DETAIL_IMAGE_TITLE, this@DetailActivity.data.title)
             }
             startActivity(intent)
         }
@@ -148,6 +172,20 @@ class DetailActivity : AppCompatActivity() {
             } else {
                 //Expanded
                 binding.fabContainer.visibility = View.VISIBLE
+            }
+        })
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.isMangaBookmarked(data.endpoint).observe(this, {
+            it?.let {
+                fabBookmarkFlag = it > 0
+                Log.d("HAPUS", fabBookmarkFlag.toString())
+                if (fabBookmarkFlag)
+                    binding.fabBookmark.setImageResource(R.drawable.ic_baseline_bookmark)
+                else
+                    binding.fabBookmark.setImageResource(R.drawable.ic_baseline_bookmark_border)
             }
         })
     }

@@ -1,6 +1,7 @@
 package id.fadillah.pemulasubmission.data.source.local
 
 import android.os.Handler
+import android.os.Looper
 import androidx.lifecycle.LiveData
 import id.fadillah.pemulasubmission.data.source.local.entity.MangaBookmarkEntity
 import id.fadillah.pemulasubmission.data.source.local.entity.MangaRecommendedEntity
@@ -15,7 +16,7 @@ class LocalDataSource private constructor(private val mMangaDao: MangaDao, priva
             INSTANCE ?: LocalDataSource(mangaDao, jsonHelper)
     }
 
-    private val handler = Handler()
+    private val handler = Handler(Looper.getMainLooper())
 
     fun getAllRecommended(callback: LoadRecommendedMangaCallback){
         handler.postDelayed({

@@ -1,6 +1,5 @@
 package id.fadillah.pemulasubmission.data.source.local.entity
 
-import androidx.annotation.NonNull
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -8,7 +7,6 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "mangabookmarks")
 data class MangaBookmarkEntity(
     @PrimaryKey
-    @NonNull
     @ColumnInfo(name = "endpoint")
     var endpoint: String,
 
