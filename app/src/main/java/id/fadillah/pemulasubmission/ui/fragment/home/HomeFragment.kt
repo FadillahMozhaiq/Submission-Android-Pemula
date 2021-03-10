@@ -9,8 +9,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
+import com.google.android.material.snackbar.Snackbar
+import id.fadillah.pemulasubmission.R
 import id.fadillah.pemulasubmission.databinding.FragmentHomeBinding
 import id.fadillah.pemulasubmission.ui.adapter.MangaAdapter
+import id.fadillah.pemulasubmission.utils.ConnectionHelper.isOnline
 import id.fadillah.pemulasubmission.viewmodel.ViewModelFactory
 
 /**
@@ -42,16 +45,33 @@ class HomeFragment : Fragment() {
             val factory = ViewModelFactory.getInstance(requireContext())
             viewModel = ViewModelProvider(this, factory)[HomeViewModel::class.java]
 
-//            if (isOnline(requireContext())) {
-//                TODO("Not yet implemented")
-//            }
+            if (isOnline(requireContext())) {
+                showRecyclerView(false)
+                viewModel.getAllManga().observe(viewLifecycleOwner, { manga ->
+                    showRecyclerView(true)
+                    mangaAdapter.setData(manga)
+                    mangaAdapter.notifyDataSetChanged()
+                })
+            } else {
+                binding?.let {
+                    Snackbar.make(
+                        it.edtSearch,
+                        "Please check your Internet Connection!",
+                        Snackbar.LENGTH_LONG
+                    ).setBackgroundTint(resources.getColor(R.color.red_danger))
+                        .setAction("OKAY") {
+                            null
+                        }
+                        .show()
+                }
 
-            showRecyclerView(false)
-            viewModel.getAllManga().observe(viewLifecycleOwner, { manga ->
-                showRecyclerView(true)
-                mangaAdapter.setData(manga)
-                mangaAdapter.notifyDataSetChanged()
-            })
+                showRecyclerView(false)
+                viewModel.getRecommendedManga().observe(viewLifecycleOwner, { manga ->
+                    showRecyclerView(true)
+                    mangaAdapter.setData(manga)
+                    mangaAdapter.notifyDataSetChanged()
+                })
+            }
 
             binding?.edtSearch?.addTextChangedListener(object : TextWatcher {
                 override fun beforeTextChanged(
