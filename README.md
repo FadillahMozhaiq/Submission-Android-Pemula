@@ -1,4 +1,4 @@
-# Submission-Android-Pemula bertema 'Manga'
+# Submission Android Pemula Dicoding bertema 'Manga'
 ## Dengan fitur baca manga,bagikan, dan simpan ke Favorite
 
 > Tampilan Awal (Light Mode)
