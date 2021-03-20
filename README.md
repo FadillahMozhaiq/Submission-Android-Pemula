@@ -1,12 +1,18 @@
-# Submission-Android-Pemula
-## Submission kelas Android Pemula di Dicoding
+# Submission-Android-Pemula bertema 'Manga'
+## Dengan fitur baca manga,bagikan, dan simpan ke Favorite
 
-> Sedang dalam proses pengerjaan
+> Tampilan Awal (Light Mode)
 
-```
-  fun wait(long: Time()) {
-    while(long < Time().now()) {
-      justWait()
-    }
-  }
-```    
+> Tampilan Detail (Light Mode)
+
+> Tampilan Favorite (Light Mode)
+
+> Tampilan Profile (Light Mode)
+
+> Tampilan Awal (Night Mode)
+
+> Tampilan Detail (Night Mode)
+
+> Tampilan Favorite (Night Mode)
+
+> Tampilan Profile (Night Mode)
